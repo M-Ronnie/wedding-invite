@@ -147,7 +147,7 @@ const siteConfig = {
         date: "2026-10-24",
         time: "11:00 AM",
         venue: "Watoto Church, Ntinda",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
+        mapEmbed: "https://maps.app.goo.gl/oaexZirVyapA6r9c6",
         dressCode: "Elegant-formal", // Optional
         description: "Join us for our Holy Matrimony", // Optional
         category: "wedding", // Optional: for filtering
@@ -158,7 +158,7 @@ const siteConfig = {
         date: "2026-10-24",
         time: "2:30 PM",
         venue: "RCN Hall, Makerere-Kikoni",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
+        mapEmbed: "https://maps.app.goo.gl/1rN1YGqttUeTRFWg9",
         dressCode: "Elegant-formal", // Optional
         description: "An an afternoon of celebrations", // Optional
         category: "post-wedding", // Optional
