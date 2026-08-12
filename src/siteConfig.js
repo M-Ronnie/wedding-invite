@@ -59,14 +59,14 @@ const siteConfig = {
     name1: "Ronny",
     name2: "Penny",
     displayName: "Ronny & Penny", // Used in navbar and footer
-    name1Image: "/images/partner1.svg", // Path to partner 1's photo (replace with your image)
-    name2Image: "/images/partner2.svg", // Path to partner 2's photo (replace with your image)
+    name1Image: "https://i.ibb.co/7J0T6ptQ/1000748270.jpg", // Path to partner 1's photo (replace with your image)
+    name2Image: "https://i.ibb.co/0jJ7qPTX/1000748271.jpg", // Path to partner 2's photo (replace with your image)
   },
 
   // Wedding Date (for countdown timer)
   wedding: {
-    date: "2026-0-24T11:00:00", // ISO format date/time
-    location: "Kamala, Uganda",
+    date: "2026-10-24T11:00:00", // ISO format date/time
+    location: "Kampala, Uganda",
   },
 
   // Homepage
