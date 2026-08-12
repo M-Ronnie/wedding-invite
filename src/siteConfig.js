@@ -74,7 +74,7 @@ const siteConfig = {
     title: "Welcome to Our Wedding Website!",
     subtitle: "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
     ctaButton: "https://pixbearer.com/event/181df79d-3b48-4dcf-846d-ff6b50bdf903",
-    backgroundImage: "/images/homage_page_background.png",
+    backgroundImage: "https://i.ibb.co/yn1cH3MR/1000748269.jpg",
     showCountdown: true,
   },
 
@@ -93,7 +93,7 @@ const siteConfig = {
     howWeMet: {
       enabled: true,
       title: "How We Met",
-      story: "Share the story of how you first met. This could be at college, through friends, online, or any other special way your paths crossed.",
+      story: "We met at a fellowship for singles called SWAP - Singles With A Purpose.",
     },
     proposal: {
       enabled: true,
