@@ -99,7 +99,7 @@ const siteConfig = {
       enabled: true,
       title: "The Proposal",
       story: "Tell your guests about your proposal story. Where did it happen? How did it go? Share those special moments!",
-      image: "/images/photo1.svg", // Optional proposal photo
+      image: "https://i.ibb.co/5gHSPCMZ/1-5.jpg", // Optional proposal photo
     },
     memories: {
       intro: "A few special moments from our journey together.",
@@ -112,19 +112,19 @@ const siteConfig = {
     },
     milestones: [
       {
-        date: "2020-01-15",
+        date: "2024-08-02",
         title: "First Date",
-        description: "Our first date at the coffee shop",
+        description: "Our first date",
       },
       {
-        date: "2021-06-20",
-        title: "Moved In Together",
-        description: "Started our life together",
+        date: "2025-12-06",
+        title: "She finally said yes to date",
+        description: "Officially started courtship",
       },
       {
-        date: "2023-12-25",
+        date: "2026-03-28",
         title: "Engagement",
-        description: "He said yes!",
+        description: "She said yes!",
       },
     ],
     backgroundImage: "/images/homage_page_background.png",
