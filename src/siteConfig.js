@@ -73,7 +73,7 @@ const siteConfig = {
   homepage: {
     title: "Welcome to Our Wedding Website!",
     subtitle: "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
-    ctaButton: "Upload Photos",
+    ctaButton: "https://pixbearer.com/event/181df79d-3b48-4dcf-846d-ff6b50bdf903",
     backgroundImage: "/images/homage_page_background.png",
     showCountdown: true,
   },
