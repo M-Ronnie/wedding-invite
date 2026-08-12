@@ -72,7 +72,7 @@ const siteConfig = {
     title: "Welcome to Our Wedding Website!",
     subtitle: "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
     ctaButton: "https://pixbearer.com/event/181df79d-3b48-4dcf-846d-ff6b50bdf903",
-    backgroundImage: "https://i.ibb.co/yn1cH3MR/1000748269.jpg",
+    backgroundImage: "https://i.ibb.co/B2qtyJp1/1000748269.jpg",
     showCountdown: true,
   },
 
@@ -87,7 +87,7 @@ const siteConfig = {
       enabled: true,
       title: "The Proposal",
       story: "Tell your guests about your proposal story. Where did it happen? How did it go? Share those special moments!",
-      image: "https://i.ibb.co/JWM9gvLd/1-4.jpg", // Optional proposal photo
+      image: "https://i.ibb.co/vCqHqnQp/1-3.jpg", // Optional proposal photo
     },
     memories: {
       intro: "A few special moments from our journey together.",
@@ -121,7 +121,7 @@ const siteConfig = {
         description: "She said yes!",
       },
     ],
-    backgroundImage: "https://i.ibb.co/5gHSPCMZ/1-5.jpg",
+    backgroundImage: "https://i.ibb.co/nMZRrPDG/1-5.jpg",
   },
 
   // ============================================
