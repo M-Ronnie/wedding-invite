@@ -78,16 +78,6 @@ const siteConfig = {
 
   // Our Story Section
   ourStory: {
-    partner1Story: {
-      name: "Partner 1's Story",
-      image: "/images/partner1.svg", // Replace with your photo
-      story: "Share your story here. This is where you can tell your guests about your journey, how you met, and what makes your relationship special.",
-    },
-    partner2Story: {
-      name: "Partner 2's Story",
-      image: "/images/partner2.svg", // Replace with your photo
-      story: "Share your story here. This is where you can tell your guests about your journey, how you met, and what makes your relationship special.",
-    },
     howWeMet: {
       enabled: true,
       title: "How We Met",
