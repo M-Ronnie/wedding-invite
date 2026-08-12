@@ -92,10 +92,16 @@ const siteConfig = {
     memories: {
       intro: "A few special moments from our journey together.",
       images: [
-        "/images/photo1.svg", // Replace with your photos
-        "/images/photo2.svg",
-        "/images/photo3.svg",
-        "/images/photo4.svg",
+        "https://i.ibb.co/V6g0Whn/IMG-20260803-222109.jpg",
+"https://i.ibb.co/v455FDTY/IMG-20260803-222330.jpg",
+"https://i.ibb.co/5g9DTPJt/IMG-20260803-222230.jpg",
+"https://i.ibb.co/spVKRX9Z/IMG-20260619-181133.jpg",
+"https://i.ibb.co/4wJP2N1K/IMG-20260619-181128.jpg",
+"https://i.ibb.co/77HStb4/IMG-20260619-110048.jpg",
+"https://i.ibb.co/nSf7KKF/IMG-20260619-110001.jpg",
+"https://i.ibb.co/FkvnCr69/IMG-20260606-170026.jpg",
+"https://i.ibb.co/Tqgdd0px/IMG-20260606-165925.jpg",
+"https://i.ibb.co/MDVxqwc1/IMG-20260531-182814.png"
       ],
     },
     milestones: [
