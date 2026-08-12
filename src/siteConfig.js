@@ -48,7 +48,7 @@ const siteConfig = {
       // { name: "Rehearsal Dinner", description: "Pre-wedding dinner with close family and friends", dressCode: "Semi-formal" },
       { name: "Wedding Ceremony", description: "Church ceremony - join us as we say 'I do'", dressCode: "Formal" },
       // { name: "Cocktail Hour", description: "Post-ceremony cocktails and mingling", dressCode: "Semi-formal" },
-      { name: "Reception", description: "Wedding reception with dinner and dancing", dressCode: "Formal" },
+      { name: "Reception", description: "Wedding reception with lunch and celebrations", dressCode: "Formal" },
       // { name: "After Party", description: "Late night celebration", dressCode: "Casual" },
     ],
     // custom: [], // User defines their own events
