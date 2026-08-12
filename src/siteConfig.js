@@ -33,9 +33,7 @@ const siteConfig = {
     blessings: { enabled: true, label: "Blessings" },
     weddingParty: { enabled: true, label: "Wedding Party" },
     registry: { enabled: true, label: "Registry" },
-    travel: { enabled: true, label: "Travel & Accommodation" },
     faq: { enabled: true, label: "FAQ" },
-    timeline: { enabled: true, label: "Timeline" },
   },
 
   // ============================================
@@ -56,8 +54,8 @@ const siteConfig = {
 
   // Couple Information
   couple: {
-    name1: "Ronny",
-    name2: "Penny",
+    name1: "Masisa Ronald",
+    name2: "Kirabo Peninah Nassozi",
     displayName: "Ronny & Penny", // Used in navbar and footer
     name1Image: "https://i.ibb.co/7J0T6ptQ/1000748270.jpg", // Path to partner 1's photo (replace with your image)
     name2Image: "https://i.ibb.co/0jJ7qPTX/1000748271.jpg", // Path to partner 2's photo (replace with your image)
@@ -192,7 +190,7 @@ const siteConfig = {
   blessings: {
     title: "Drop Us Your Blessing",
     subtitle: "Your blessings mean the world to us. Share your thoughts, prayers, and kind words as we embark on this new journey together.",
-    backgroundImage: "/images/homage_page_background.png",
+    backgroundImage: "https://i.ibb.co/MxGHDxSW/1000748265.jpg",
     showAllBlessings: true, // Show all submitted blessings
     enableSearch: true,
     enableLikes: false, // Optional: enable like/react functionality
@@ -202,7 +200,7 @@ const siteConfig = {
   uploadPhotos: {
     title: "Upload Your Photos",
     subtitle: "Share your favorite moments from our special day!",
-    backgroundImage: "/images/homage_page_background.png",
+    backgroundImage: "https://i.ibb.co/PvT5Rp98/1000748264.jpg",
     enableCaptions: true, // Allow users to add captions
     maxFileSize: 10, // MB
     allowedTypes: ["image/jpeg", "image/png", "image/webp"],
@@ -269,50 +267,6 @@ const siteConfig = {
     thankYouMessage: "Thank you for your generous gifts!",
   },
 
-  // Travel & Accommodation
-  travel: {
-    title: "Travel & Accommodation",
-    subtitle: "Everything you need to know about getting here and staying here",
-    // Coordinates for weather forecast (optional)
-    // Get coordinates from: https://www.latlong.net/
-    coordinates: {
-      lat: null, // e.g., 40.7128 for New York
-      lon: null, // e.g., -74.0060 for New York
-    },
-    hotels: [
-      {
-        name: "Hotel Name",
-        address: "123 Main St, City, State",
-        phone: "+1 (555) 123-4567",
-        website: "https://example.com/hotel",
-        description: "Beautiful hotel near the venue",
-        distance: "0.5 miles from venue",
-        bookingCode: "WEDDING2025", // Optional booking code
-      },
-    ],
-    transportation: {
-      airport: {
-        name: "City International Airport",
-        code: "XYZ",
-        distance: "20 miles",
-        directions: "Take Highway 101 North, exit at Main Street",
-      },
-      parking: "Free parking available at the venue",
-      shuttle: "Shuttle service available from hotel (details TBD)",
-    },
-    localAttractions: [
-      {
-        name: "Local Attraction",
-        description: "Great place to visit",
-        website: "https://example.com/attraction",
-      },
-    ],
-    maps: {
-      venue: "https://www.google.com/maps/embed?pb=YOUR_VENUE_MAP",
-      hotels: "https://www.google.com/maps/embed?pb=YOUR_HOTELS_MAP",
-    },
-  },
-
   // FAQ
   faq: {
     title: "Frequently Asked Questions",
@@ -320,7 +274,7 @@ const siteConfig = {
     questions: [
       {
         title: "What should I wear?",
-        content: "Semi-formal attire is requested. Please avoid white.",
+        content: "Elegant-formal attire is requested. Please avoid revealing clothes.",
       },
       {
         title: "Can I bring a plus one?",
@@ -405,12 +359,7 @@ const siteConfig = {
 
   // Footer
   footer: {
-    tagline: "True love is the greatest adventure. Thank you for being a part of our journey!",
-    contactEmail: "wedding@example.com", // Optional
-    socialMedia: {
-      instagram: "https://instagram.com/yourhandle", // Optional
-      facebook: "https://facebook.com/yourpage", // Optional
-    },
+    tagline: "He who finds a wife finds a good thing and obtains favour from the LORD. Thank you for being a part of our journey!",
   },
 
   // Navigation
