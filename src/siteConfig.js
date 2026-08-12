@@ -57,8 +57,8 @@ const siteConfig = {
     name1: "Masisa Ronald",
     name2: "Kirabo Peninah Nassozi",
     displayName: "Ronny & Penny", // Used in navbar and footer
-    name1Image: "https://i.ibb.co/7J0T6ptQ/1000748270.jpg", // Path to partner 1's photo (replace with your image)
-    name2Image: "https://i.ibb.co/0jJ7qPTX/1000748271.jpg", // Path to partner 2's photo (replace with your image)
+    name1Image: "https://i.ibb.co/67q3RMrM/IMG-20241221-181446-032418.jpg", // Path to partner 1's photo (replace with your image)
+    name2Image: "https://i.ibb.co/vxxLww2f/IMG-20251231-142334.jpg", // Path to partner 2's photo (replace with your image)
   },
 
   // Wedding Date (for countdown timer)
