@@ -46,9 +46,9 @@ const siteConfig = {
   eventPresets: {
     christian: [
       // { name: "Rehearsal Dinner", description: "Pre-wedding dinner with close family and friends", dressCode: "Semi-formal" },
-      { name: "Wedding Ceremony", description: "Church ceremony - join us as we say 'I do'", dressCode: "Formal" },
+      { name: "Wedding Ceremony", description: "Church ceremony - join us as we say 'I do'", dressCode: "Elegant-formal" },
       // { name: "Cocktail Hour", description: "Post-ceremony cocktails and mingling", dressCode: "Semi-formal" },
-      { name: "Reception", description: "Wedding reception with lunch and celebrations", dressCode: "Formal" },
+      { name: "Reception", description: "Wedding reception with lunch and celebrations", dressCode: "Elegant-formal" },
       // { name: "After Party", description: "Late night celebration", dressCode: "Casual" },
     ],
     // custom: [], // User defines their own events
@@ -99,7 +99,7 @@ const siteConfig = {
       enabled: true,
       title: "The Proposal",
       story: "Tell your guests about your proposal story. Where did it happen? How did it go? Share those special moments!",
-      image: "https://i.ibb.co/5gHSPCMZ/1-5.jpg", // Optional proposal photo
+      image: "https://i.ibb.co/JWM9gvLd/1-4.jpg", // Optional proposal photo
     },
     memories: {
       intro: "A few special moments from our journey together.",
@@ -127,7 +127,7 @@ const siteConfig = {
         description: "She said yes!",
       },
     ],
-    backgroundImage: "/images/homage_page_background.png",
+    backgroundImage: "https://i.ibb.co/5gHSPCMZ/1-5.jpg",
   },
 
   // ============================================
@@ -143,48 +143,26 @@ const siteConfig = {
     events: [
       {
         id: 1,
-        name: "Engagement & Seemanth Puja",
-        date: "2025-02-22",
-        time: "12:00 PM",
-        venue: "Venue Name, City",
+        name: "Wedding Ceremony",
+        date: "2026-10-24",
+        time: "11:00 AM",
+        venue: "Watoto Church, Ntinda",
         mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Semi-formal", // Optional
-        description: "Join us for our engagement ceremony", // Optional
-        category: "pre-wedding", // Optional: for filtering
+        dressCode: "Elegant-formal", // Optional
+        description: "Join us for our Holy Matrimony", // Optional
+        category: "wedding", // Optional: for filtering
       },
       {
         id: 2,
-        name: "Sangeet",
-        date: "2025-02-22",
-        time: "7:00 PM",
-        venue: "Venue Name, City",
+        name: "Reception",
+        date: "2026-10-24",
+        time: "2:30 PM",
+        venue: "RCN Hall, Makerere-Kikoni",
         mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "An evening of music and dance", // Optional
-        category: "pre-wedding", // Optional
-      },
-      {
-        id: 3,
-        name: "Vidhi",
-        date: "2025-02-23",
-        time: "9:00 AM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "Traditional ceremony", // Optional
-        category: "wedding", // Optional
-      },
-      {
-        id: 4,
-        name: "Mangalashtaka",
-        date: "2025-02-23",
-        time: "10:30 AM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "Main wedding ceremony", // Optional
-        category: "wedding", // Optional
-      },
+        dressCode: "Elegant-formal", // Optional
+        description: "An an afternoon of celebrations", // Optional
+        category: "post-wedding", // Optional
+      }
     ],
     // Google Apps Script URL for RSVP submissions (optional)
     // If not using Google Apps Script, you can set this to your own API endpoint
