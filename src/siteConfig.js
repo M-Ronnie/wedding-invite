@@ -251,7 +251,7 @@ const siteConfig = {
     ],
     // Google Apps Script URL for RSVP submissions (optional)
     // If not using Google Apps Script, you can set this to your own API endpoint
-    rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "",
+    rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "https://sheetson.com",
     accommodationOptions: [
       { value: "Morning", label: "Morning (9 AM - 12 PM)" },
       { value: "Afternoon", label: "Afternoon (12 PM - 4 PM)" },
