@@ -98,7 +98,7 @@ const siteConfig = {
         "https://i.ibb.co/nSf7KKF/IMG-20260619-110001.jpg",
         "https://i.ibb.co/FkvnCr69/IMG-20260606-170026.jpg",
         "https://i.ibb.co/Tqgdd0px/IMG-20260606-165925.jpg",
-        "https://i.ibb.co/MDVxqwc1/IMG-20260531-182814.png"
+        "https://i.ibb.co/MDVxqwc1/IMG-20260531-182814.png",
       ],
     },
     milestones: [
