@@ -18,7 +18,7 @@ function Registry() {
   useEffect(() => {
     const loadReservations = async () => {
       try {
-        const response = await fetch('/.netlify/functions/gift-status');
+        const response = await fetch('/api/getStatus');
         const data = await response.json();
         if (data.success) {
           setReservations(data.reservations || {});
@@ -42,7 +42,7 @@ function Registry() {
 
   const handleReserveSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!reserveForm.name || !reserveForm.email) {
       setReserveError('Please fill in all fields');
       return;
@@ -52,7 +52,7 @@ function Registry() {
     setReserveError('');
 
     try {
-      const response = await fetch('/.netlify/functions/gift-status', {
+      const response = await fetch('/api/getStatus', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -114,7 +114,7 @@ function Registry() {
               {registries.map((registry, index) => {
                 const giftId = `registry-${index}`;
                 const reserved = isReserved(giftId);
-                
+
                 return (
                   <Card key={index} className="p-6 text-center relative">
                     {reserved && (
@@ -204,7 +204,7 @@ function Registry() {
             <p className="text-apple-gray-600 mb-4">
               Reserve <strong>{selectedGift?.name}</strong> to let others know you're planning to purchase it.
             </p>
-            
+
             <div>
               <label className="block text-sm font-medium text-apple-gray-700 mb-2">
                 Your Name
@@ -266,4 +266,3 @@ function Registry() {
 }
 
 export default Registry;
-
