@@ -64,14 +64,14 @@ const siteConfig = {
     name1: "Masisa Ronald",
     name2: "Kirabo Peninah Nassozi",
     displayName: "Ronny & Penny", // Used in navbar and footer
-    name1Image: "/images/partner1.svg", // Path to partner 1's photo (replace with your image)
-    name2Image: "/images/partner2.svg", // Path to partner 2's photo (replace with your image)
+    name1Image: "https://i.ibb.co/67q3RMrM/IMG-20241221-181446-032418.jpg", // Path to partner 1's photo (replace with your image)
+    name2Image: "https://i.ibb.co/vxxLww2f/IMG-20251231-142334.jpg", // Path to partner 2's photo (replace with your image)
   },
 
   // Wedding Date (for countdown timer)
   wedding: {
-    date: "2025-02-22T12:00:00", // ISO format date/time
-    location: "City, Country",
+    date: "2026-10-24T11:00:00", // ISO format date/time
+    location: "Kampala, Uganda",
   },
 
   // Homepage
