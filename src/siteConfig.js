@@ -132,7 +132,7 @@ const siteConfig = {
     subtitle:
       "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
     ctaButton: "Upload Photos",
-    backgroundImage: "/https://i.ibb.co/fV2VxFhC/1000748264.jpg",
+    backgroundImage: "https://i.ibb.co/fV2VxFhC/1000748264.jpg",
     showCountdown: true,
   },
 
@@ -251,7 +251,7 @@ const siteConfig = {
     ],
     // Google Apps Script URL for RSVP submissions (optional)
     // If not using Google Apps Script, you can set this to your own API endpoint
-    rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "https://sheetson.com",
+    rsvpApiUrl: "https://sheetson.com",
     accommodationOptions: [
       { value: "Available", label: "Available" },
       { value: "Not available", label: "Not Available" },
