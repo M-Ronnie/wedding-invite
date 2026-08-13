@@ -342,7 +342,7 @@ const siteConfig = {
         description: "Join us for our Holy Matrimony",
         category: "wedding",
       },
-    const receptionDetails =  {
+      {
         id: 2,
         name: "Reception",
         date: "2026-10-24",
