@@ -43,13 +43,9 @@ const siteConfig = {
   // Use these as reference or copy to events array below
   eventPresets: {
     christian: [
-      // { name: "Rehearsal Dinner", description: "Pre-wedding dinner with close family and friends", dressCode: "Semi-formal" },
       { name: "Wedding Ceremony", description: "Church ceremony - join us as we say 'I do'", dressCode: "Elegant-formal" },
-      // { name: "Cocktail Hour", description: "Post-ceremony cocktails and mingling", dressCode: "Semi-formal" },
       { name: "Reception", description: "Wedding reception with lunch and celebrations", dressCode: "Elegant-formal" },
-      // { name: "After Party", description: "Late night celebration", dressCode: "Casual" },
     ],
-    // custom: [], // User defines their own events
   },
 
   // Couple Information
@@ -57,8 +53,8 @@ const siteConfig = {
     name1: "Masisa Ronald",
     name2: "Kirabo Peninah Nassozi",
     displayName: "Ronny & Penny", // Used in navbar and footer
-    name1Image: "https://ibb.co", // Path to partner 1's photo (replace with your image)
-    name2Image: "https://ibb.co", // Path to partner 2's photo (replace with your image)
+    name1Image: "https://i.ibb.co/67q3RMrM/IMG-20241221-181446-032418.jpg", 
+    name2Image: "https://i.ibb.co/vxxLww2f/IMG-20251231-142334.jpg", 
   },
 
   // Wedding Date (for countdown timer)
@@ -71,8 +67,8 @@ const siteConfig = {
   homepage: {
     title: "Welcome to Our Wedding Website!",
     subtitle: "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
-    ctaButton: "https://pixbearer.com",
-    backgroundImage: "https://ibb.co",
+    ctaButton: "https://pixbearer.com/event/181df79d-3b48-4dcf-846d-ff6b50bdf903",
+    backgroundImage: "https://i.ibb.co/B2qtyJp1/1000748269.jpg",
     showCountdown: true,
   },
 
@@ -87,22 +83,225 @@ const siteConfig = {
       enabled: true,
       title: "The Proposal",
       story: "Tell your guests about your proposal story. Where did it happen? How did it go? Share those special moments!",
-      image: "https://ibb.co", // Optional proposal photo
+      image: "https://i.ibb.co/vCqHqnQp/1-3.jpg", 
     },
     memories: {
       intro: "A few special moments from our journey together.",
+      // FIXED: Properly isolated layout array parameters with uniform string spacing
       images: [
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co",
-        "https://ibb.co"
+        "https://i.ibb.co/V6g0Whn/IMG-20260803-222109.jpg",
+        "https://i.ibb.co/v455FDTY/IMG-20260803-222330.jpg",
+        "https://i.ibb.co/5g9DTPJt/IMG-20260803-222230.jpg",
+        "https://i.ibb.co/spVKRX9Z/IMG-20260619-181133.jpg",
+        "https://i.ibb.co/4wJP2N1K/IMG-20260619-181128.jpg",
+        "https://i.ibb.co/77HStb4/IMG-20260619-110048.jpg",
+        "https://i.ibb.co/nSf7KKF/IMG-20260619-110001.jpg",
+        "https://i.ibb.co/FkvnCr69/IMG-20260606-170026.jpg",
+        "https://i.ibb.co/Tqgdd0px/IMG-20260606-165925.jpg",
+        "https://i.ibb.co/MDVxqwc1/IMG-20260531-182814.png"
       ],
+    },
+    milestones: [
+      {
+        date: "2024-08-02",
+        title: "First Date",
+        description: "Our first date",
+      },
+      {
+        date: "2025-12-06",
+        title: "She finally said yes to date",
+        description: "Officially started courtship",
+      },
+      {
+        date: "2026-03-28",
+        title: "Engagement",
+        description: "She said yes!",
+      },
+    ],
+    backgroundImage: "https://i.ibb.co/nMZRrPDG/1-5.jpg",
+  },
+
+  // ============================================
+  // EVENTS/RSVP PAGE
+  // ============================================
+  events: {
+    title: "Celebrate With Us",
+    subtitle: "We are thrilled to have you join us for these cherished moments.",
+    events: [
+      {
+        id: 1,
+        name: "Wedding Ceremony",
+        date: "2026-10-24",
+        time: "11:00 AM",
+        venue: "Watoto Church, Ntinda",
+        mapEmbed: "https://maps.app.goo.gl/oaexZirVyapA6r9c6",
+        dressCode: "Elegant-formal",
+        description: "Join us for our Holy Matrimony",
+        category: "wedding",
+      },
+      {
+        id: 2,
+        name: "Reception",
+        date: "2026-10-24",
+        time: "2:30 PM",
+        venue: "RCN Hall, Makerere-Kikoni",
+        mapEmbed: "https://maps.app.goo.gl/1rN1YGqttUeTRFWg9",
+        dressCode: "Elegant-formal",
+        description: "An afternoon of celebrations",
+        category: "post-wedding",
+      }
+    ],
+    rsvpApiUrl: "https://api.sheetson.com/v2/sheets/Sheet1",
+    accommodationOptions: [
+      { value: "Joyfully Accepts", label: "Joyfully Accepts" },
+      { value: "Regretfully Declines", label: "Regretfully Declines" },
+    ],
+    backgroundImage: "/images/homage_page_background.png",
+  },
+
+  // Photo Gallery
+  photoGallery: {
+    title: "Our Photo Gallery",
+    subtitle: "Memories captured from our special day",
+    showUploadedPhotos: true,
+    staticPhotos: [],
+    enableFiltering: true,
+    enableDownload: true,
+  },
+
+  // Blessings Page
+  blessings: {
+    title: "Drop Us Your Blessing",
+    subtitle: "Your blessings mean the world to us. Share your thoughts, prayers, and kind words as we embark on this new journey together.",
+    backgroundImage: "https://i.ibb.co/MxGHDxSW/1000748265.jpg",
+    showAllBlessings: true,
+    enableSearch: true,
+    enableLikes: false,
+  },
+
+  // Upload Photos Page
+  uploadPhotos: {
+    title: "Upload Your Photos",
+    subtitle: "Share your favorite moments from our special day!",
+    backgroundImage: "https://i.ibb.co/PvT5Rp98/1000748264.jpg",
+    enableCaptions: true,
+    maxFileSize: 10,
+    allowedTypes: ["image/jpeg", "image/png", "image/webp"],
+  },
+
+  // Wedding Party
+  weddingParty: {
+    title: "Our Wedding Party",
+    subtitle: "Meet the amazing people standing with us",
+    bridesmaids: [
+      {
+        name: "Bridesmaid 1",
+        role: "Maid of Honor",
+        image: "/images/partner1.svg",
+        bio: "Short bio about this person",
+      },
+      {
+        name: "Bridesmaid 2",
+        role: "Bridesmaid",
+        image: "/images/partner2.svg",
+        bio: "Short bio about this person",
+      },
+    ],
+    groomsmen: [
+      {
+        name: "Groomsman 1",
+        role: "Best Man",
+        image: "/images/partner1.svg",
+        bio: "Short bio about this person",
+      },
+      {
+        name: "Groomsman 2",
+        role: "Groomsman",
+        image: "/images/partner2.svg",
+        bio: "Short bio about this person",
+      },
+    ],
+  },
+
+  // Registry/Gifts
+  registry: {
+    title: "Wedding Registry",
+    subtitle: "Your presence is the greatest gift, but if you'd like to honor us with something special...",
+    enableGiftTracking: true,
+    registries: [
+      {
+        name: "Amazon",
+        url: "https://www.amazon.com/wedding-registry",
+        description: "Our Amazon registry",
+      },
+      {
+        name: "Target",
+        url: "https://www.target.com/wedding-registry",
+        description: "Our Target registry",
+      },
+    ],
+    cashFunds: [
+      {
+        name: "Honeymoon Fund",
+        description: "Help us create unforgettable memories",
+        url: "https://example.com/honeymoon-fund",
+      },
+    ],
+    thankYouMessage: "Thank you for your generous gifts!",
+  },
+
+  // FAQ
+  faq: {
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know",
+    questions: [
+      {
+        title: "What should I wear?",
+        content: "Elegant-formal attire is requested. Please avoid revealing clothes.",
+      },
+      {
+        title: "Can I bring a plus one?",
+        content: "Please check your invitation for plus one details.",
+      },
+      {
+        title: "Will there be parking?",
+        content: "Yes, free parking is available at the venue.",
+      },
+      {
+        title: "What time should I arrive?",
+        content: "Please arrive 15-30 minutes before the ceremony begins.",
+      },
+      {
+        title: "Are children welcome?",
+        content: "While we love your little ones, this will be an adults-only celebration.",
+      },
+    ],
+  },
+
+  // Timeline
+  timeline: {
+    title: "Our Journey",
+    subtitle: "Milestones in our relationship",
+    showPlanningTimeline: false,
+    items: [
+      {
+        date: "2024-08-02",
+        title: "First Date",
+        description: "Our very first date together.",
+        image: "/images/photo1.svg",
+        type: "relationship",
+      },
+      {
+        date: "2025-12-06",
+        title: "Official Courtship",
+        description: "She finally said yes to being exclusive!",
+        type: "relationship",
+      },
+      {
+        date: "2026-03-28",
+        title: "Engagement",
+        description: "She said yes! We're getting married!",
+        image: "/images/photo2.svg",
     },
     milestones: [
       {
