@@ -13,10 +13,10 @@ function PhotoGallery() {
     const loadPhotos = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const allPhotos = [];
-        
+
         // Load static photos from config
         const staticPhotos = (siteConfig.photoGallery?.staticPhotos || []).map((url, idx) => ({
           id: `static-${idx}`,
@@ -26,7 +26,7 @@ function PhotoGallery() {
           category: 'static',
         }));
         allPhotos.push(...staticPhotos);
-        
+
         // Load memory photos from ourStory
         const memoryPhotos = (siteConfig.ourStory?.memories?.images || []).map((img, idx) => ({
           id: `memory-${idx}`,
@@ -36,13 +36,13 @@ function PhotoGallery() {
           category: 'memories',
         }));
         allPhotos.push(...memoryPhotos);
-        
+
         // Load uploaded photos from Google Drive if enabled
         if (siteConfig.photoGallery?.showUploadedPhotos) {
           try {
-            const response = await fetch('/.netlify/functions/get-photos');
+            const response = await fetch('/api/getPhotos');
             const data = await response.json();
-            
+
             if (data.success && data.photos) {
               allPhotos.push(...data.photos);
             } else {
@@ -54,7 +54,7 @@ function PhotoGallery() {
             // Photos from Drive are optional
           }
         }
-        
+
         setPhotos(allPhotos);
       } catch (err) {
         console.error('Error loading photos:', err);
@@ -67,8 +67,8 @@ function PhotoGallery() {
     loadPhotos();
   }, []);
 
-  const filteredPhotos = filter === 'all' 
-    ? photos 
+  const filteredPhotos = filter === 'all'
+    ? photos
     : photos.filter(photo => photo.category === filter);
 
   const categories = ['all', ...new Set(photos.map(p => p.category).filter(Boolean))];
@@ -229,4 +229,3 @@ function PhotoGallery() {
 }
 
 export default PhotoGallery;
-
