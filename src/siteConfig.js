@@ -253,10 +253,9 @@ const siteConfig = {
     // If not using Google Apps Script, you can set this to your own API endpoint
     rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "https://sheetson.com",
     accommodationOptions: [
-      { value: "Morning", label: "Morning (9 AM - 12 PM)" },
-      { value: "Afternoon", label: "Afternoon (12 PM - 4 PM)" },
-      { value: "Evening", label: "Evening (4 PM - 8 PM)" },
-      { value: "Night", label: "Night (After 8 PM)" },
+      { value: "Available", label: "Available" },
+      { value: "Not available", label: "Not Available" },
+      { value: "Not Sure Yet", label: "Not Sure Yet" },
     ],
     backgroundImage: "/images/homage_page_background.png",
   },
