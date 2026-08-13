@@ -20,7 +20,7 @@ function UploadPhotos() {
     const validFiles = fileArray.filter((file) => {
       const maxSize = (siteConfig.uploadPhotos?.maxFileSize || 10) * 1024 * 1024; // Convert to bytes
       const allowedTypes = siteConfig.uploadPhotos?.allowedTypes || ['image/jpeg', 'image/png', 'image/webp'];
-      
+
       if (!allowedTypes.includes(file.type)) {
         alert(`${file.name} is not a supported image type.`);
         return false;
@@ -33,7 +33,7 @@ function UploadPhotos() {
     });
 
     setFiles([...files, ...validFiles]);
-    
+
     // Create previews
     validFiles.forEach((file) => {
       const reader = new FileReader();
@@ -114,7 +114,7 @@ function UploadPhotos() {
     try {
       await simulateProgress();
 
-      const response = await fetch('/.netlify/functions/upload', {
+      const response = await fetch('/api/uploadPhoto', {
         method: 'POST',
         body: formData,
       });
@@ -161,7 +161,7 @@ function UploadPhotos() {
           onDrop={handleDrop}
         >
           <div className="text-center">
-            <div className="text-6xl mb-4">📸</div>
+            <div className="text-6xl mb-4">ðŸ“¸</div>
             <h3 className="text-xl font-semibold text-apple-gray-900 mb-2">
               {isDragging ? 'Drop files here' : 'Drag & drop photos here'}
             </h3>
