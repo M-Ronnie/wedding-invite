@@ -44,68 +44,16 @@ const siteConfig = {
   // Pre-built event templates based on wedding type
   // Use these as reference or copy to events array below
   eventPresets: {
-    hindu: [
-      {
-        name: "Engagement",
-        description: "Ring ceremony and engagement celebration",
-        dressCode: "Semi-formal",
-      },
-      {
-        name: "Haldi",
-        description: "Turmeric ceremony - traditional pre-wedding ritual",
-        dressCode: "Traditional (yellow/white)",
-      },
-      {
-        name: "Mehndi",
-        description: "Henna ceremony - intricate designs and celebration",
-        dressCode: "Traditional (bright colors)",
-      },
-      {
-        name: "Sangeet",
-        description: "Music and dance night with family and friends",
-        dressCode: "Traditional or Semi-formal",
-      },
-      {
-        name: "Baraat",
-        description: "Groom's procession - grand entrance celebration",
-        dressCode: "Traditional",
-      },
-      {
-        name: "Vidhi",
-        description: "Wedding rituals and ceremonies",
-        dressCode: "Traditional",
-      },
-      {
-        name: "Reception",
-        description: "Wedding reception celebration",
-        dressCode: "Formal",
-      },
-    ],
     christian: [
-      {
-        name: "Rehearsal Dinner",
-        description: "Pre-wedding dinner with close family and friends",
-        dressCode: "Semi-formal",
-      },
       {
         name: "Wedding Ceremony",
         description: "Church ceremony - join us as we say 'I do'",
         dressCode: "Formal",
       },
       {
-        name: "Cocktail Hour",
-        description: "Post-ceremony cocktails and mingling",
-        dressCode: "Semi-formal",
-      },
-      {
         name: "Reception",
         description: "Wedding reception with dinner and dancing",
         dressCode: "Formal",
-      },
-      {
-        name: "After Party",
-        description: "Late night celebration",
-        dressCode: "Casual",
       },
     ],
     custom: [], // User defines their own events
@@ -113,9 +61,9 @@ const siteConfig = {
 
   // Couple Information
   couple: {
-    name1: "Partner 1",
-    name2: "Partner 2",
-    displayName: "Partner 1 & Partner 2", // Used in navbar and footer
+    name1: "Masisa Ronald",
+    name2: "Kirabo Peninah Nassozi",
+    displayName: "Ronny & Penny", // Used in navbar and footer
     name1Image: "/images/partner1.svg", // Path to partner 1's photo (replace with your image)
     name2Image: "/images/partner2.svg", // Path to partner 2's photo (replace with your image)
   },
