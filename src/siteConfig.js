@@ -132,7 +132,7 @@ const siteConfig = {
     subtitle:
       "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
     ctaButton: "Upload Photos",
-    backgroundImage: "https://i.ibb.co/fV2VxFhC/1000748264.jpg",
+    backgroundImage: "/images/homage_page_background.png",
     showCountdown: true,
   },
 
@@ -251,10 +251,13 @@ const siteConfig = {
     ],
     // Google Apps Script URL for RSVP submissions (optional)
     // If not using Google Apps Script, you can set this to your own API endpoint
-    rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "https://sheetson.com",
+    rsvpApiUrl: process.env.REACT_APP_RSVP_API_URL || "",
     accommodationOptions: [
-      { value: "Available", label: "Available" },
-      { value: "Not Available", label: "Not Available" },
+      { value: "Morning", label: "Morning (9 AM - 12 PM)" },
+      { value: "Afternoon", label: "Afternoon (12 PM - 4 PM)" },
+      { value: "Evening", label: "Evening (4 PM - 8 PM)" },
+      { value: "Night", label: "Night (After 8 PM)" },
+    ],
     backgroundImage: "/images/homage_page_background.png",
   },
 
