@@ -35,11 +35,18 @@ function Blessings() {
     }
   }, [likes]);
 
-  // Load all blessings (mock data for now - in production, fetch from Google Sheets)
+  // Load all blessings from the backend (Google Sheets via getBlessings)
   useEffect(() => {
-    // This would fetch from your backend/Google Sheets API
-    // For now, we'll use empty array
-    setAllBlessings([]);
+    fetch('/api/getBlessings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setAllBlessings(data.blessings);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load blessings:', error);
+      });
   }, []);
 
   const isValidEmail = (email) => {
@@ -65,7 +72,7 @@ function Blessings() {
       setLoading(true);
 
       try {
-        const response = await fetch('/.netlify/functions/submit-blessings', {
+        const response = await fetch('/api/submitBlessing', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
@@ -102,7 +109,7 @@ function Blessings() {
 
   const toggleLike = (blessingId) => {
     if (!siteConfig.blessings?.enableLikes) return;
-    
+
     setLikes((prevLikes) => {
       const newLikes = { ...prevLikes };
       if (newLikes[blessingId]) {
@@ -221,7 +228,7 @@ function Blessings() {
               </Card>
             ) : (
               <Card className="p-8 text-center">
-                <div className="text-6xl mb-4">✨</div>
+                <div className="text-6xl mb-4">âœ¨</div>
                 <h2 className="text-2xl font-semibold text-apple-gray-900 mb-2">
                   Thank You!
                 </h2>
@@ -254,7 +261,7 @@ function Blessings() {
                 {filteredBlessings.map((blessing, index) => {
                   const blessingId = blessing.id || `blessing-${index}`;
                   const liked = isLiked(blessingId);
-                  
+
                   return (
                     <Card key={index} className="p-6">
                       <div className="flex items-start justify-between mb-3">
