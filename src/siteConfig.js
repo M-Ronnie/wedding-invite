@@ -289,6 +289,192 @@ const siteConfig = {
   timeline: {
     title: "Our Journey",
     subtitle: "Milestones in our relationship",
+    },
+    milestones: [
+      {
+        date: "2024-08-02",
+        title: "First Date",
+        description: "Our first date",
+      },
+      {
+        date: "2025-12-06",
+        title: "She finally said yes to date",
+        description: "Officially started courtship",
+      },
+      {
+        date: "2026-03-28",
+        title: "Engagement",
+        description: "She said yes!",
+      },
+    ],
+    backgroundImage: "https://ibb.co",
+  },
+
+  // ============================================
+  // EVENTS/RSVP PAGE
+  // ============================================
+  // Customize your events below
+  events: {
+    title: "Celebrate With Us",
+    subtitle: "We are thrilled to have you join us for these cherished moments.",
+    events: [
+      {
+        id: 1,
+        name: "Wedding Ceremony",
+        date: "2026-10-24",
+        time: "11:00 AM",
+        venue: "Watoto Church, Ntinda",
+        mapEmbed: "https://goo.gl",
+        dressCode: "Elegant-formal",
+        description: "Join us for our Holy Matrimony",
+        category: "wedding",
+      },
+      {
+        id: 2,
+        name: "Reception",
+        date: "2026-10-24",
+        time: "2:30 PM",
+        venue: "RCN Hall, Makerere-Kikoni",
+        mapEmbed: "https://goo.gl",
+        dressCode: "Elegant-formal",
+        description: "An afternoon of celebrations",
+        category: "post-wedding",
+      }
+    ],
+    // FIXED: Sheetson data API target endpoint
+    rsvpApiUrl: "https://sheetson.com",
+    
+    // Configured dropdown options for your guests
+    accommodationOptions: [
+      { value: "Joyfully Accepts", label: "Joyfully Accepts" },
+      { value: "Regretfully Declines", label: "Regretfully Declines" },
+    ],
+    backgroundImage: "/images/homage_page_background.png",
+  },
+
+  // Photo Gallery
+  photoGallery: {
+    title: "Our Photo Gallery",
+    subtitle: "Memories captured from our special day",
+    showUploadedPhotos: true,
+    staticPhotos: [],
+    enableFiltering: true,
+    enableDownload: true,
+  },
+
+  // Blessings Page
+  blessings: {
+    title: "Drop Us Your Blessing",
+    subtitle: "Your blessings mean the world to us. Share your thoughts, prayers, and kind words as we embark on this new journey together.",
+    backgroundImage: "https://ibb.co",
+    showAllBlessings: true,
+    enableSearch: true,
+    enableLikes: false,
+  },
+
+  // Upload Photos Page
+  uploadPhotos: {
+    title: "Upload Your Photos",
+    subtitle: "Share your favorite moments from our special day!",
+    backgroundImage: "https://ibb.co",
+    enableCaptions: true,
+    maxFileSize: 10,
+    allowedTypes: ["image/jpeg", "image/png", "image/webp"],
+  },
+
+  // Wedding Party
+  weddingParty: {
+    title: "Our Wedding Party",
+    subtitle: "Meet the amazing people standing with us",
+    bridesmaids: [
+      {
+        name: "Bridesmaid 1",
+        role: "Maid of Honor",
+        image: "/images/partner1.svg",
+        bio: "Short bio about this person",
+      },
+      {
+        name: "Bridesmaid 2",
+        role: "Bridesmaid",
+        image: "/images/partner2.svg",
+        bio: "Short bio about this person",
+      },
+    ],
+    groomsmen: [
+      {
+        name: "Groomsman 1",
+        role: "Best Man",
+        image: "/images/partner1.svg",
+        bio: "Short bio about this person",
+      },
+      {
+        name: "Groomsman 2",
+        role: "Groomsman",
+        image: "/images/partner2.svg",
+        bio: "Short bio about this person",
+      },
+    ],
+  },
+
+  // Registry/Gifts
+  registry: {
+    title: "Wedding Registry",
+    subtitle: "Your presence is the greatest gift, but if you'd like to honor us with something special...",
+    enableGiftTracking: true,
+    registries: [
+      {
+        name: "Amazon",
+        url: "https://amazon.com",
+        description: "Our Amazon registry",
+      },
+      {
+        name: "Target",
+        url: "https://target.com",
+        description: "Our Target registry",
+      },
+    ],
+    cashFunds: [
+      {
+        name: "Honeymoon Fund",
+        description: "Help us create unforgettable memories",
+        url: "https://example.com",
+      },
+    ],
+    thankYouMessage: "Thank you for your generous gifts!",
+  },
+
+  // FAQ
+  faq: {
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know",
+    questions: [
+      {
+        title: "What should I wear?",
+        content: "Elegant-formal attire is requested. Please avoid revealing clothes.",
+      },
+      {
+        title: "Can I bring a plus one?",
+        content: "Please check your invitation for plus one details.",
+      },
+      {
+        title: "Will there be parking?",
+        content: "Yes, free parking is available at the venue.",
+      },
+      {
+        title: "What time should I arrive?",
+        content: "Please arrive 15-30 minutes before the ceremony begins.",
+      },
+      {
+        title: "Are children welcome?",
+        content: "While we love your little ones, this will be an adults-only celebration.",
+      },
+    ],
+  },
+
+  // Timeline
+  timeline: {
+    title: "Our Journey",
+    subtitle: "Milestones in our relationship",
     title: "Our Wedding Party",
     subtitle: "Meet the amazing people standing with us",
     bridesmaids: [
