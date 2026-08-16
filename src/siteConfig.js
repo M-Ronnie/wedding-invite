@@ -216,37 +216,19 @@ const siteConfig = {
 
   // Wedding Party
   weddingParty: {
-    title: "Our Wedding Party",
-    subtitle: "Meet the amazing people standing with us",
-    bridesmaids: [
-      {
-        name: "Bridesmaid 1",
-        role: "Maid of Honor",
-        image: "/images/partner1.svg", // Replace with actual photo
-        bio: "Short bio about this person",
-      },
-      {
-        name: "Bridesmaid 2",
-        role: "Bridesmaid",
-        image: "/images/partner2.svg",
-        bio: "Short bio about this person",
-      },
-    ],
-    groomsmen: [
-      {
-        name: "Groomsman 1",
-        role: "Best Man",
-        image: "/images/partner1.svg", // Replace with actual photo
-        bio: "Short bio about this person",
-      },
-      {
-        name: "Groomsman 2",
-        role: "Groomsman",
-        image: "/images/partner2.svg",
-        bio: "Short bio about this person",
-      },
-    ],
+  title: "Our Wedding Party",
+  subtitle: "Meet the amazing people standing with us",
+  maidOfHonor: {
+    name: "Mrs Hauda Tusubira Ngorok",
+    image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // Replace with actual photo
+    bio: "Short bio about this person",
   },
+  bestMan: {
+    name: "Mr. Nathan Ngorok",
+    image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // Replace with actual photo
+    bio: "Short bio about this person",
+  },
+},
 
   // Registry/Gifts
 registry: {
