@@ -253,9 +253,12 @@ function EventPage() {
               </Card>
             ) : (
               <Card className="p-8">
-                <h3 className="text-2xl font-semibold text-apple-gray-900 mb-6 text-center">
+                <h3 className="text-2xl font-semibold text-apple-gray-900 mb-2 text-center">
                   RSVP
                 </h3>
+                <p className="text-sm text-apple-gray-600 mb-6 text-center">
+                  Please confirm your attendance at the reception so we can plan seating and catering.
+                </p>
                 <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-apple-gray-700 mb-2">
@@ -273,7 +276,7 @@ function EventPage() {
 
                   <div>
                     <label className="block text-sm font-medium text-apple-gray-700 mb-2">
-                      Will you attend?
+                      Will you attend the reception?
                     </label>
                     <div className="flex gap-4">
                       <label className="flex items-center gap-2">
