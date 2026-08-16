@@ -13,6 +13,17 @@ function Registry() {
   const [reserveForm, setReserveForm] = useState({ name: '', email: '' });
   const [reserveLoading, setReserveLoading] = useState(false);
   const [reserveError, setReserveError] = useState('');
+  const [copiedPhone, setCopiedPhone] = useState(null);
+
+  const handleCopyPhone = async (phone) => {
+    try {
+      await navigator.clipboard.writeText(phone);
+      setCopiedPhone(phone);
+      setTimeout(() => setCopiedPhone(null), 2000);
+    } catch (error) {
+      console.error('Failed to copy phone number:', error);
+    }
+  };
 
   // Load gift reservations
   useEffect(() => {
@@ -169,9 +180,23 @@ function Registry() {
                   {fund.description && (
                     <p className="text-apple-gray-600 mb-4">{fund.description}</p>
                   )}
-                  <a href={fund.url} target="_blank" rel="noopener noreferrer">
-                    <Button variant="secondary">Contribute</Button>
-                  </a>
+                  {fund.phone ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <p className="text-lg font-medium text-apple-gray-900 tracking-wide">
+                        {fund.phone}
+                      </p>
+                      <Button
+                        variant="secondary"
+                        onClick={() => handleCopyPhone(fund.phone)}
+                      >
+                        {copiedPhone === fund.phone ? 'Copied!' : 'Copy Number'}
+                      </Button>
+                    </div>
+                  ) : fund.url ? (
+                    <a href={fund.url} target="_blank" rel="noopener noreferrer">
+                      <Button variant="secondary">Contribute</Button>
+                    </a>
+                  ) : null}
                 </Card>
               ))}
             </div>
