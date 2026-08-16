@@ -218,16 +218,10 @@ const siteConfig = {
   weddingParty: {
   title: "Our Wedding Party",
   subtitle: "Meet the amazing people standing with us",
-  maidOfHonor: {
-    name: "Mrs Hauda Tusubira Ngorok",
-    image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // Replace with actual photo
-    bio: "Short bio about this person",
-  },
-  bestMan: {
-    name: "Mr. Nathan Ngorok",
-    image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // Replace with actual photo
-    bio: "Short bio about this person",
-  },
+  image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // one photo of both of them together
+  maidOfHonorName: "Mrs. Hauda Tusibira Ngorok",
+  bestManName: "Mr. Nathan Ngorok",
+  bio: "Amazing friends of our we met in SWAP as well",
 },
 
   // Registry/Gifts
