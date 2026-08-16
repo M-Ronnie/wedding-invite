@@ -18,7 +18,7 @@ const siteConfig = {
   // ============================================
   // Options: "hindu", "christian", "custom"
   // This determines which event presets are available
-  weddingType: "hindu", // Change to "christian" or "custom" as needed
+  weddingType: "custom", // Change to "christian" or "custom" as needed
 
   // ============================================
   // FEATURE FLAGS - Enable/disable features
