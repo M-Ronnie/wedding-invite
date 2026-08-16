@@ -180,7 +180,28 @@ function Registry() {
                   {fund.description && (
                     <p className="text-apple-gray-600 mb-4">{fund.description}</p>
                   )}
-                  {fund.phone ? (
+                  {fund.phones && fund.phones.length > 0 ? (
+                    <div className="flex flex-col items-center gap-3">
+                      {fund.phones.map((p, pIndex) => (
+                        <div key={pIndex} className="flex flex-col items-center gap-2">
+                          {p.label && (
+                            <p className="text-xs uppercase tracking-wide text-apple-gray-500">
+                              {p.label}
+                            </p>
+                          )}
+                          <p className="text-lg font-medium text-apple-gray-900 tracking-wide">
+                            {p.number}
+                          </p>
+                          <Button
+                            variant="secondary"
+                            onClick={() => handleCopyPhone(p.number)}
+                          >
+                            {copiedPhone === p.number ? 'Copied!' : 'Copy Number'}
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : fund.phone ? (
                     <div className="flex flex-col items-center gap-2">
                       <p className="text-lg font-medium text-apple-gray-900 tracking-wide">
                         {fund.phone}
