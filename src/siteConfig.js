@@ -87,16 +87,14 @@ const siteConfig = {
   // Our Story Section
   ourStory: {
     partner1Story: {
-      name: "Partner 1's Story",
-      image: "/images/partner1.svg", // Replace with your photo
-      story:
-        "Share your story here. This is where you can tell your guests about your journey, how you met, and what makes your relationship special.",
+      name: "Ronny's Story",
+      image: "https://i.ibb.co/67q3RMrM/IMG-20241221-181446-032418.jpg", // Replace with your photo
+      story: "I first set my eyes on her at an event I was in charge of for a ministry called SWAP. Then again at a friend's wedding where she was putting a lovely dress in my fav colours. Next thing was to pray and see if God stamps it and here we are.",
     },
     partner2Story: {
-      name: "Partner 2's Story",
-      image: "/images/partner2.svg", // Replace with your photo
-      story:
-        "Share your story here. This is where you can tell your guests about your journey, how you met, and what makes your relationship special.",
+      name: "Penny's Story",
+      image: "https://i.ibb.co/vxxLww2f/IMG-20251231-142334.jpg", // Replace with your photo
+      story: "Share your story here. This is where you can tell your guests about your journey, how you met, and what makes your relationship special.",
     },
     howWeMet: {
       enabled: true,
@@ -201,8 +199,7 @@ const siteConfig = {
   // Blessings Page
   blessings: {
     title: "Drop Us Your Blessing",
-    subtitle:
-      "Your blessings mean the world to us. Share your thoughts, prayers, and kind words as we embark on this new journey together.",
+    subtitle: "Your blessings mean the world to us. Share your thoughts, prayers, and kind words as we embark on this new journey together.",
     backgroundImage: "/images/homage_page_background.png",
     showAllBlessings: true, // Show all submitted blessings
     enableSearch: true,
