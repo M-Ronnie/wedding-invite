@@ -33,7 +33,7 @@ const siteConfig = {
     blessings: { enabled: true, label: "Blessings" },
     weddingParty: { enabled: true, label: "Wedding Party" },
     registry: { enabled: true, label: "Registry" },
-    travel: { enabled: true, label: "Travel & Accommodation" },
+    travel: { enabled: false, label: "Travel & Accommodation" },
     faq: { enabled: true, label: "FAQ" },
     timeline: { enabled: true, label: "Timeline" },
   },
