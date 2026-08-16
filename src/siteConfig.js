@@ -254,19 +254,30 @@ const siteConfig = {
   },
 
   // Registry/Gifts
-  registry: {
-    title: "Wedding Registry",
-    subtitle: "Your presence is the greatest gift, but if you'd like to honor us with something special...",
-    enableGiftTracking: true, // Enable gift reservation system
-    cashFunds: [
-      {
-        name: "Financial Support",
-        description: "If you would like to support us financially",
-        url: "https://example.com/honeymoon-fund",
-      },
-    ],
-    thankYouMessage: "Thank you for your generous gifts!",
-  },
+registry: {
+  title: "Wedding Registry",
+  subtitle: "Your presence is the greatest gift, but if you'd like to honor us with something special...",
+  enableGiftTracking: true, // Enable gift reservation system
+  cashFunds: [
+    {
+      name: "Mwebaze Alice Rebekah - Treasurer",
+      description: "Send via mobile money to our treasurer",
+      phone: "+256783757405",
+      phone: "+256755789159",// Replace with treasurer's actual number
+    },
+    {
+      name: "Masisa Ronald - Groom",
+      description: "Send via mobile money to Ronald",
+      phone: "+256788711240", // Replace with Ronald's actual number
+    },
+    {
+      name: "Kirabo Peninah Nassozi - Bride",
+      description: "Send via mobile money to Peninah",
+      phone: "+256785443487", // Replace with Peninah's actual number
+    },
+  ],
+  thankYouMessage: "Thank you for your generous gifts!",
+},
 
   // FAQ
   faq: {
