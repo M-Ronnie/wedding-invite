@@ -315,60 +315,33 @@ const siteConfig = {
         title: "Proposal",
         description: "We made it official!",
         type: "relationship",
-        image: "/images/photo2.svg",
+        image: "https://i.ibb.co/nMZRrPDG/1-5.jpg",
       },
       {
         date: "2026-08-01",
         title: "Kukyala",
         description: "We officially visited Ssenga",
         type: "relationship",
-        image: "/images/photo2.svg",
+        image: "https://i.ibb.co/ym9wtbk6/1000748265.jpg",
       },
       {
         date: "2026-10-17",
         title: "Introduction",
         description: "Traditional Wedding",
-        image: "/images/photo2.svg", // Optional
+        image: "https://i.ibb.co/fV2VxFhC/1000748264.jpg", // Optional
         type: "relationship",
       },
     ],
     // Wedding Planning Timeline
-    planningItems: [
-      {
-        date: "2024-01-15",
-        title: "Started Planning",
-        description: "Began our wedding planning journey",
-        type: "planning",
-      },
-      {
-        date: "2024-03-20",
-        title: "Venue Booked",
-        description: "Found and booked our dream venue",
-        type: "planning",
-      },
-      {
-        date: "2024-06-15",
-        title: "Vendors Selected",
-        description: "Photographer, caterer, and florist confirmed",
-        type: "planning",
-      },
-      {
-        date: "2024-09-01",
-        title: "Invitations Sent",
-        description: "Save the dates and invitations sent to all guests",
-        type: "planning",
-      },
-    ],
   },
 
   // Footer
   footer: {
     tagline:
-      "True love is the greatest adventure. Thank you for being a part of our journey!",
-    contactEmail: "wedding@example.com", // Optional
+      "He who finds a wife finds a good thing and obtains favour from the LORD. Thank you for being a part of our journey!",
+    contactEmail: "ronnywedspenny@gmail.com", // Optional
     socialMedia: {
-      instagram: "https://instagram.com/yourhandle", // Optional
-      facebook: "https://facebook.com/yourpage", // Optional
+      instagram: "https://instagram.com/masisa4g", // Optional
     },
   },
 
@@ -388,9 +361,9 @@ const siteConfig = {
 
   // App Metadata
   app: {
-    name: "Wedding Invite",
+    name: "Ronny weds Penny",
     shortName: "Wedding",
-    description: "A beautiful wedding website to share your special day",
+    description: "A beautiful wedding website to share our special day",
   },
 };
 
