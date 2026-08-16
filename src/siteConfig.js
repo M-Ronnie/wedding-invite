@@ -18,7 +18,7 @@ const siteConfig = {
   // ============================================
   // Options: "hindu", "christian", "custom"
   // This determines which event presets are available
-  weddingType: "christian", // Change to "christian" or "custom" as needed
+  weddingType: "custom", // Change to "christian" or "custom" as needed
 
   // ============================================
   // FEATURE FLAGS - Enable/disable features
@@ -44,7 +44,8 @@ const siteConfig = {
   // Pre-built event templates based on wedding type
   // Use these as reference or copy to events array below
   eventPresets: {
-    christian: [
+    christian: [],
+    custom: [
       {
         name: "Wedding Ceremony",
         description: "Church ceremony - join us as we say 'I do'",
@@ -55,8 +56,7 @@ const siteConfig = {
         description: "Wedding reception with dinner and dancing",
         dressCode: "Elegant-Formal",
       },
-    ],
-    custom: [], // User defines their own events
+    ], // User defines their own events
   },
 
   // Couple Information
@@ -114,10 +114,10 @@ const siteConfig = {
     memories: {
       intro: "A few special moments from our journey together.",
       images: [
-        "/images/photo1.svg", // Replace with your photos
-        "/images/photo2.svg",
-        "/images/photo3.svg",
-        "/images/photo4.svg",
+        "https://i.ibb.co/V6g0Whn/IMG-20260803-222109.jpg", // Replace with your photos
+        "https://i.ibb.co/b5PgTDRD/1-4.jpg",
+        "https://i.ibb.co/B2qtyJp1/1000748269.jpg",
+        "https://i.ibb.co/fV2VxFhC/1000748264.jpg",
       ],
     },
     milestones: [
