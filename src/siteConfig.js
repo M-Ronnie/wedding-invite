@@ -215,7 +215,7 @@ const siteConfig = {
     subtitle: "Share your favorite moments from our special day!",
     backgroundImage: "/images/homage_page_background.png",
     enableCaptions: true, // Allow users to add captions
-    maxFileSize: 10, // MB
+    maxFileSize: 4.5, // MB
     allowedTypes: ["image/jpeg", "image/png", "image/webp"],
   },
 
@@ -256,8 +256,7 @@ const siteConfig = {
   // Registry/Gifts
   registry: {
     title: "Wedding Registry",
-    subtitle:
-      "Your presence is the greatest gift, but if you'd like to honor us with something special...",
+    subtitle: "Your presence is the greatest gift, but if you'd like to honor us with something special...",
     enableGiftTracking: true, // Enable gift reservation system
     cashFunds: [
       {
@@ -276,7 +275,7 @@ const siteConfig = {
     questions: [
       {
         title: "What should I wear?",
-        content: "Semi-formal attire is requested. Please avoid white.",
+        content: "Elegant-formal attire is requested. Please avoid skimpy and revealing clothes.",
       },
       {
         title: "Can I bring a plus one?",
@@ -305,28 +304,30 @@ const siteConfig = {
     showPlanningTimeline: true, // Show wedding planning milestones
     items: [
       {
-        date: "2020-01-15",
+        date: "2024-08-02",
         title: "First Date",
-        description: "Our first date at the coffee shop downtown",
+        description: "Our first date",
         image: "/images/photo1.svg", // Optional
         type: "relationship", // "relationship" or "planning"
       },
       {
-        date: "2020-06-20",
-        title: "Official",
+        date: "2026-03-28",
+        title: "Proposal",
         description: "We made it official!",
         type: "relationship",
+        image: "/images/photo2.svg",
       },
       {
-        date: "2021-06-20",
-        title: "Moved In Together",
-        description: "Started our life together in our first apartment",
+        date: "2026-08-01",
+        title: "Kukyala",
+        description: "We officially visited Ssenga",
         type: "relationship",
+        image: "/images/photo2.svg",
       },
       {
-        date: "2023-12-25",
-        title: "Engagement",
-        description: "He said yes! We're getting married!",
+        date: "2026-10-17",
+        title: "Introduction",
+        description: "Traditional Wedding",
         image: "/images/photo2.svg", // Optional
         type: "relationship",
       },
