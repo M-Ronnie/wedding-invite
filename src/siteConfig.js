@@ -215,7 +215,7 @@ const siteConfig = {
     subtitle: "Share your favorite moments from our special day!",
     backgroundImage: "/images/homage_page_background.png",
     enableCaptions: true, // Allow users to add captions
-    maxFileSize: 4.5, // MB
+    maxFileSize: 4, // MB
     allowedTypes: ["image/jpeg", "image/png", "image/webp"],
   },
 
