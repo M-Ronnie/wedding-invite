@@ -154,47 +154,25 @@ const siteConfig = {
     events: [
       {
         id: 1,
-        name: "Engagement & Seemanth Puja",
-        date: "2025-02-22",
-        time: "12:00 PM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Semi-formal", // Optional
-        description: "Join us for our engagement ceremony", // Optional
-        category: "pre-wedding", // Optional: for filtering
+        name: "Wedding Ceremony",
+        date: "2026-10-24",
+        time: "11:00 AM",
+        venue: "Watoto Church, Ntinda",
+        mapEmbed: "https://maps.app.goo.gl/fMzmVaczfCBRvBQbA",
+        dressCode: "Elegant-formal", // Optional
+        description: "Join us as we say our vows", // Optional
+        category: "Wedding", // Optional: for filtering
       },
       {
         id: 2,
-        name: "Sangeet",
-        date: "2025-02-22",
-        time: "7:00 PM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "An evening of music and dance", // Optional
-        category: "pre-wedding", // Optional
-      },
-      {
-        id: 3,
-        name: "Vidhi",
-        date: "2025-02-23",
-        time: "9:00 AM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "Traditional ceremony", // Optional
-        category: "wedding", // Optional
-      },
-      {
-        id: 4,
-        name: "Mangalashtaka",
-        date: "2025-02-23",
-        time: "10:30 AM",
-        venue: "Venue Name, City",
-        mapEmbed: "https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL",
-        dressCode: "Traditional", // Optional
-        description: "Main wedding ceremony", // Optional
-        category: "wedding", // Optional
+        name: "Reception",
+        date: "2026-10-24",
+        time: "2:30 PM",
+        venue: "RCN Hall, Makerere-Kikoni",
+        mapEmbed: "https://maps.app.goo.gl/hrZkVW8tp3EQ1eJ17",
+        dressCode: "Elegant-Formal", // Optional
+        description: "An evening of celebration", // Optional
+        category: "post-wedding", // Optional
       },
     ],
     // Google Apps Script URL for RSVP submissions (optional)
