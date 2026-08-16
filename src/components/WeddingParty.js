@@ -3,12 +3,9 @@ import siteConfig from '../siteConfig';
 import Card from './ui/Card';
 
 function WeddingParty() {
-  const { maidOfHonor, bestMan } = siteConfig.weddingParty || {};
+  const { image, maidOfHonorName, bestManName, bio } = siteConfig.weddingParty || {};
 
-  const pair = [
-    maidOfHonor && { ...maidOfHonor, role: 'Maid of Honor' },
-    bestMan && { ...bestMan, role: 'Best Man' },
-  ].filter(Boolean);
+  const hasContent = image || maidOfHonorName || bestManName;
 
   return (
     <div className="min-h-screen bg-apple-gray-50 pt-24 pb-20">
@@ -23,28 +20,26 @@ function WeddingParty() {
           </p>
         </div>
 
-        {/* Maid of Honor & Best Man */}
-        {pair.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {pair.map((person, index) => (
-              <Card key={index} className="p-6 text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-apple-gray-900 mb-1">
-                  {person.name}
-                </h3>
-                <p className="text-apple-blue-600 font-medium mb-3">{person.role}</p>
-                {person.bio && (
-                  <p className="text-apple-gray-600 text-sm">{person.bio}</p>
-                )}
-              </Card>
-            ))}
-          </div>
+        {/* Maid of Honor & Best Man (shared photo) */}
+        {hasContent ? (
+          <Card className="p-8 text-center max-w-md mx-auto">
+            {image && (
+              <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                <img
+                  src={image}
+                  alt={`${maidOfHonorName || 'Maid of Honor'} & ${bestManName || 'Best Man'}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <h3 className="text-xl font-semibold text-apple-gray-900 mb-1">
+              {maidOfHonorName} &amp; {bestManName}
+            </h3>
+            <p className="text-apple-blue-600 font-medium mb-3">
+              Maid of Honor &amp; Best Man
+            </p>
+            {bio && <p className="text-apple-gray-600 text-sm">{bio}</p>}
+          </Card>
         ) : (
           <div className="text-center py-20">
             <p className="text-apple-gray-500 text-lg">Wedding party information coming soon!</p>
