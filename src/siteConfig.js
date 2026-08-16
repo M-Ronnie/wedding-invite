@@ -48,12 +48,12 @@ const siteConfig = {
       {
         name: "Wedding Ceremony",
         description: "Church ceremony - join us as we say 'I do'",
-        dressCode: "Formal",
+        dressCode: "Elegant-Formal",
       },
       {
         name: "Reception",
         description: "Wedding reception with dinner and dancing",
-        dressCode: "Formal",
+        dressCode: "Elegant-Formal",
       },
     ],
     custom: [], // User defines their own events
