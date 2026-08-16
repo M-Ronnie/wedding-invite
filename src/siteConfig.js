@@ -174,7 +174,6 @@ const siteConfig = {
     ],
     // Google Apps Script URL for RSVP submissions (optional)
     // If not using Google Apps Script, you can set this to your own API endpoint
-    rsvpApiUrl: "https://sheetson.com",
     accommodationOptions: [
       { value: "Available", label: "Available" },
       { value: "Not available", label: "Not Available" },
