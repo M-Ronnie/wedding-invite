@@ -1,122 +1,292 @@
-import { google } from 'googleapis';
-import { createWriteStream, unlinkSync, createReadStream } from 'fs';
-import { join } from 'path';
-import Busboy from 'busboy';
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import siteConfig from '../siteConfig';
+import Card from './ui/Card';
+import Button from './ui/Button';
 
-// Google Auth setup
-const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
-  scopes: ['https://www.googleapis.com/auth/drive'],
-});
-const drive = google.drive({ version: 'v3', auth });
+// Vercel's serverless function request body limit is ~4.5MB total per request.
+// This caps the COMBINED size of all files in one upload, separate from the
+// per-file maxFileSize check below.
+const MAX_TOTAL_UPLOAD_MB = 4;
 
-// Get folder ID from environment variable
-const FOLDER_ID = process.env.GOOGLE_DRIVE_FOLDER_ID;
+function UploadPhotos() {
+  const [files, setFiles] = useState([]);
+  const [previews, setPreviews] = useState([]);
+  const [message, setMessage] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
-if (!FOLDER_ID) {
-  console.error('ERROR: GOOGLE_DRIVE_FOLDER_ID environment variable is not set');
-}
+  const getTotalSizeMB = (fileList) =>
+    fileList.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
 
-// IMPORTANT: Vercel parses request bodies as JSON by default.
-// File uploads need the raw multipart stream instead, so body parsing
-// must be turned off for this function specifically.
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+  // Handle file selection
+  const handleFileChange = (selectedFiles) => {
+    const fileArray = Array.from(selectedFiles);
+    const validFiles = fileArray.filter((file) => {
+      const maxSize = (siteConfig.uploadPhotos?.maxFileSize || 10) * 1024 * 1024; // Convert to bytes
+      const allowedTypes = siteConfig.uploadPhotos?.allowedTypes || ['image/jpeg', 'image/png', 'image/webp'];
 
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+      if (!allowedTypes.includes(file.type)) {
+        alert(`${file.name} is not a supported image type.`);
+        return false;
+      }
+      if (file.size > maxSize) {
+        alert(`${file.name} is too large. Maximum size is ${siteConfig.uploadPhotos?.maxFileSize || 10}MB.`);
+        return false;
+      }
+      return true;
+    });
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+    // Check combined size of everything selected so far, including these new files
+    const combined = [...files, ...validFiles];
+    const totalMB = getTotalSizeMB(combined);
+    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
+      alert(
+        `These photos add up to ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit per upload. Please remove a few or upload them in smaller batches.`
+      );
+      return;
+    }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method not allowed.' });
-  }
+    setFiles(combined);
 
-  console.log('Processing file upload...');
-  const contentType = req.headers['content-type'];
-  console.log('Received Content-Type:', contentType);
+    // Create previews
+    validFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviews((prev) => [...prev, { file, preview: reader.result }]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
 
-  if (!contentType || !contentType.includes('multipart/form-data')) {
-    console.error('Invalid Content-Type:', contentType);
-    return res.status(400).json({ success: false, message: 'Invalid Content-Type header.' });
-  }
+  const handleInputChange = (e) => {
+    if (e.target.files.length > 0) {
+      handleFileChange(e.target.files);
+    }
+  };
 
-  const busboy = Busboy({ headers: { 'content-type': contentType } });
-  const fileIds = [];
-  const uploadPromises = [];
+  // Drag and drop handlers
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
 
-  return new Promise((resolve) => {
-    busboy.on('file', (fieldname, file, fileDetails) => {
-      const filename = fileDetails.filename || `unknown_${Date.now()}`;
-      const mimetype = fileDetails.mimeType || fileDetails.mimetype;
-      console.log(`Processing file: ${filename}`);
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
 
-      const uploadPromise = new Promise((res_, rej_) => {
-        const tempFilePath = join('/tmp', filename);
-        const writeStream = createWriteStream(tempFilePath);
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-        file.pipe(writeStream);
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
 
-        file.on('end', async () => {
-          try {
-            const fileMetadata = { name: filename, parents: [FOLDER_ID] };
-            const media = { mimeType: mimetype, body: createReadStream(tempFilePath) };
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleFileChange(e.dataTransfer.files);
+    }
+  };
 
-            const response = await drive.files.create({
-              resource: fileMetadata,
-              media,
-              fields: 'id',
-            });
+  // Remove file
+  const removeFile = (index) => {
+    setFiles(files.filter((_, i) => i !== index));
+    setPreviews(previews.filter((_, i) => i !== index));
+  };
 
-            fileIds.push(response.data.id);
-            console.log(`Uploaded file ID: ${response.data.id}`);
-            unlinkSync(tempFilePath); // Clean up temporary file
-            res_();
-          } catch (error) {
-            console.error('Error during file upload:', error.message);
-            try { unlinkSync(tempFilePath); } catch (_) {}
-            rej_(error);
-          }
-        });
+  // Simulate upload progress
+  const simulateProgress = () => {
+    return new Promise((resolve) => {
+      let progressValue = 0;
+      const interval = setInterval(() => {
+        progressValue += 10;
+        setProgress(progressValue);
+        if (progressValue >= 100) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 100);
+    });
+  };
 
-        file.on('error', (error) => {
-          console.error('File stream error:', error.message);
-          rej_(error);
-        });
+  // Handle file upload
+  const handleUpload = async () => {
+    if (files.length === 0) {
+      setMessage('Please select at least one file to upload.');
+      return;
+    }
+
+    // Final guard in case state got out of sync (e.g. files removed/re-added)
+    const totalMB = getTotalSizeMB(files);
+    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
+      setMessage(
+        `Your selected photos total ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit. Please remove a few and try again.`
+      );
+      return;
+    }
+
+    setUploading(true);
+    setMessage('');
+    const formData = new FormData();
+    files.forEach((file) => formData.append('images', file));
+
+    try {
+      await simulateProgress();
+
+      const response = await fetch('/api/uploadPhoto', {
+        method: 'POST',
+        body: formData,
       });
 
-      uploadPromises.push(uploadPromise);
-    });
+      const result = await response.json();
 
-    busboy.on('finish', async () => {
-      try {
-        await Promise.all(uploadPromises);
-        res.status(200).json({
-          success: true,
-          message: 'Files uploaded successfully!',
-          fileIds,
-        });
-      } catch (error) {
-        console.error('Error completing upload:', error.message);
-        res.status(500).json({
-          success: false,
-          message: 'File upload failed.',
-          error: error.message,
-        });
+      if (response.ok && result.success) {
+        setMessage('Files uploaded successfully!');
+        setTimeout(() => {
+          navigate('/gallery');
+        }, 2000);
+      } else {
+        setMessage(result.message || 'Failed to upload files.');
       }
-      resolve();
-    });
+    } catch (error) {
+      console.error('Error during upload:', error);
+      setMessage('An unexpected error occurred.');
+    } finally {
+      setUploading(false);
+    }
+  };
 
-    // Vercel gives req as a raw Node.js readable stream (unlike Netlify,
-    // which delivers a base64-encoded string body) â€” so we pipe it
-    // directly into busboy instead of decoding first.
-    req.pipe(busboy);
-  });
+  return (
+    <div className="min-h-screen bg-apple-gray-50 pt-24 pb-20">
+      <div className="section-container">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl sm:text-title font-semibold text-apple-gray-900 mb-4">
+            {siteConfig.uploadPhotos?.title || 'Upload Your Photos'}
+          </h1>
+          <p className="text-lg text-apple-gray-600 max-w-2xl mx-auto">
+            {siteConfig.uploadPhotos?.subtitle || 'Share your favorite moments from our special day!'}
+          </p>
+        </div>
+
+        {/* Drag and Drop Area */}
+        <Card
+          className={`p-12 mb-8 transition-all ${
+            isDragging ? 'border-2 border-apple-blue-500 bg-apple-blue-50' : 'border-2 border-dashed border-apple-gray-300'
+          }`}
+          onDragEnter={handleDragEnter}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <div className="text-center">
+            <div className="text-6xl mb-4">📸</div>
+            <h3 className="text-xl font-semibold text-apple-gray-900 mb-2">
+              {isDragging ? 'Drop files here' : 'Drag & drop photos here'}
+            </h3>
+            <p className="text-apple-gray-600 mb-6">or</p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleInputChange}
+              className="hidden"
+            />
+            <Button
+              variant="secondary"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+            >
+              Choose Files
+            </Button>
+            <p className="text-sm text-apple-gray-500 mt-4">
+              Supported: JPEG, PNG, WebP (Max {siteConfig.uploadPhotos?.maxFileSize || 10}MB per file,{' '}
+              {MAX_TOTAL_UPLOAD_MB}MB total per upload)
+            </p>
+          </div>
+        </Card>
+
+        {/* File Previews */}
+        {previews.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold text-apple-gray-900 mb-4">
+              Selected Photos ({previews.length})
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {previews.map((preview, index) => (
+                <Card key={index} className="relative group overflow-hidden">
+                  <img
+                    src={preview.preview}
+                    alt={`Preview ${index + 1}`}
+                    className="w-full aspect-square object-cover"
+                  />
+                  <button
+                    onClick={() => removeFile(index)}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Remove file"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                  <p className="p-2 text-xs text-apple-gray-600 truncate">{preview.file.name}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Upload Button and Progress */}
+        {files.length > 0 && (
+          <div className="text-center">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={handleUpload}
+              disabled={uploading}
+              className="mb-6"
+            >
+              {uploading ? 'Uploading...' : `Upload ${files.length} Photo${files.length > 1 ? 's' : ''}`}
+            </Button>
+
+            {uploading && (
+              <div className="max-w-md mx-auto">
+                <div className="w-full bg-apple-gray-200 rounded-full h-3 mb-2">
+                  <div
+                    className="bg-apple-blue-500 h-3 rounded-full transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <p className="text-sm text-apple-gray-600">{progress}% complete</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Status Message */}
+        {message && (
+          <div
+            className={`mt-6 p-4 rounded-xl text-center ${
+              message.includes('successfully')
+                ? 'bg-green-50 text-green-700'
+                : 'bg-red-50 text-red-700'
+            }`}
+          >
+            {message}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
+
+export default UploadPhotos;
