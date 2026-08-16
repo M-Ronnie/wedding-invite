@@ -18,7 +18,7 @@ const siteConfig = {
   // ============================================
   // Options: "hindu", "christian", "custom"
   // This determines which event presets are available
-  weddingType: "custom", // Change to "christian" or "custom" as needed
+  weddingType: "christian", // Change to "christian" or "custom" as needed
 
   // ============================================
   // FEATURE FLAGS - Enable/disable features
@@ -259,70 +259,14 @@ const siteConfig = {
     subtitle:
       "Your presence is the greatest gift, but if you'd like to honor us with something special...",
     enableGiftTracking: true, // Enable gift reservation system
-    registries: [
-      {
-        name: "Amazon",
-        url: "https://www.amazon.com/wedding-registry",
-        description: "Our Amazon registry",
-      },
-      {
-        name: "Target",
-        url: "https://www.target.com/wedding-registry",
-        description: "Our Target registry",
-      },
-    ],
     cashFunds: [
       {
-        name: "Honeymoon Fund",
-        description: "Help us create unforgettable memories",
+        name: "Financial Support",
+        description: "If you would like to support us financially",
         url: "https://example.com/honeymoon-fund",
       },
     ],
     thankYouMessage: "Thank you for your generous gifts!",
-  },
-
-  // Travel & Accommodation
-  travel: {
-    title: "Travel & Accommodation",
-    subtitle: "Everything you need to know about getting here and staying here",
-    // Coordinates for weather forecast (optional)
-    // Get coordinates from: https://www.latlong.net/
-    coordinates: {
-      lat: null, // e.g., 40.7128 for New York
-      lon: null, // e.g., -74.0060 for New York
-    },
-    hotels: [
-      {
-        name: "Hotel Name",
-        address: "123 Main St, City, State",
-        phone: "+1 (555) 123-4567",
-        website: "https://example.com/hotel",
-        description: "Beautiful hotel near the venue",
-        distance: "0.5 miles from venue",
-        bookingCode: "WEDDING2025", // Optional booking code
-      },
-    ],
-    transportation: {
-      airport: {
-        name: "City International Airport",
-        code: "XYZ",
-        distance: "20 miles",
-        directions: "Take Highway 101 North, exit at Main Street",
-      },
-      parking: "Free parking available at the venue",
-      shuttle: "Shuttle service available from hotel (details TBD)",
-    },
-    localAttractions: [
-      {
-        name: "Local Attraction",
-        description: "Great place to visit",
-        website: "https://example.com/attraction",
-      },
-    ],
-    maps: {
-      venue: "https://www.google.com/maps/embed?pb=YOUR_VENUE_MAP",
-      hotels: "https://www.google.com/maps/embed?pb=YOUR_HOTELS_MAP",
-    },
   },
 
   // FAQ
