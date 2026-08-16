@@ -100,14 +100,13 @@ const siteConfig = {
       enabled: true,
       title: "How We Met",
       story:
-        "Share the story of how you first met. This could be at college, through friends, online, or any other special way your paths crossed.",
+        "We met at a ministry for singles called SWAP - Singles With A Purpose.",
     },
     proposal: {
       enabled: true,
       title: "The Proposal",
-      story:
-        "Tell your guests about your proposal story. Where did it happen? How did it go? Share those special moments!",
-      image: "/images/photo1.svg", // Optional proposal photo
+      story: "It was at the Patio joined with our friends and family. What a beautiful moment it was!",
+      image: "https://i.ibb.co/nMZRrPDG/1-5.jpg", // Optional proposal photo
     },
     memories: {
       intro: "A few special moments from our journey together.",
