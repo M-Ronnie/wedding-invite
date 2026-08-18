@@ -47,6 +47,15 @@ function HomePage() {
       >
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center text-white px-4 sm:px-8 max-w-4xl">
+          {/* Logo */}
+          {siteConfig.homepage.logo && (
+            <img
+              src={siteConfig.homepage.logo}
+              alt={siteConfig.couple?.displayName || 'Logo'}
+              className="w-24 h-24 sm:w-32 sm:h-32 object-contain mb-6 animate-fade-in"
+            />
+          )}
+
           <h1 className="text-5xl sm:text-display-sm lg:text-display font-bold mb-6 animate-fade-in">
             {siteConfig.homepage.title}
           </h1>
@@ -82,7 +91,13 @@ function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <button
+          onClick={() =>
+            document.getElementById('explore-section')?.scrollIntoView({ behavior: 'smooth' })
+          }
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer focus:outline-none"
+          aria-label="Scroll down"
+        >
           <svg
             className="w-6 h-6 text-white"
             fill="none"
@@ -96,12 +111,12 @@ function HomePage() {
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>
-        </div>
+        </button>
       </div>
 
       {/* Quick Navigation Cards */}
       {quickNavCards.length > 0 && (
-        <section className="section-container py-20 bg-apple-gray-50">
+        <section id="explore-section" className="section-container py-20 bg-apple-gray-50">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-title font-semibold text-apple-gray-900 mb-4">
               Explore Our Wedding
