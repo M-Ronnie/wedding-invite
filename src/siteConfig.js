@@ -67,7 +67,13 @@ const siteConfig = {
     name1Image: "https://i.ibb.co/67q3RMrM/IMG-20241221-181446-032418.jpg", // Path to partner 1's photo (replace with your image)
     name2Image: "https://i.ibb.co/vxxLww2f/IMG-20251231-142334.jpg", // Path to partner 2's photo (replace with your image)
   },
-
+  contact: {
+  whatsapp: [
+    { label: "Ronald", number: "+256788711240" },
+    { label: "Peninah", number: "+256785443487" },
+  ],
+  email: "ronnywedspenny@gmail.com",
+},
   // Wedding Date (for countdown timer)
   wedding: {
     date: "2026-10-24T11:00:00", // ISO format date/time
