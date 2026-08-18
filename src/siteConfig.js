@@ -126,19 +126,19 @@ const siteConfig = {
     },
     milestones: [
       {
-        date: "2020-01-15",
+        date: "2024-08-04",
         title: "First Date",
-        description: "Our first date at the coffee shop",
+        description: "Our first date at Antonio's Cafe",
       },
       {
-        date: "2021-06-20",
-        title: "Moved In Together",
-        description: "Started our life together",
+        date: "2026-03-28",
+        title: "The Proposal",
+        description: "She said YES!",
       },
       {
-        date: "2023-12-25",
-        title: "Engagement",
-        description: "He said yes!",
+        date: "2026-08-01",
+        title: "Kukyala",
+        description: "It was now officially official that we're betrothed.",
       },
     ],
     backgroundImage: "/images/homage_page_background.png",
