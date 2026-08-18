@@ -23,6 +23,7 @@ function Navbar() {
   const getNavLinks = () => {
     const links = [];
     const routes = {
+      homepage: '/',
       ourStory: '/our-story',
       events: '/events',
       photoGallery: '/gallery',
@@ -36,7 +37,7 @@ function Navbar() {
     };
 
     Object.entries(siteConfig.features).forEach(([key, feature]) => {
-      if (feature.enabled && key !== 'homepage' && routes[key]) {
+      if (feature.enabled && routes[key]) {
         links.push({
           path: routes[key],
           label: feature.label,
