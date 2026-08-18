@@ -85,6 +85,7 @@ const siteConfig = {
     title: "Welcome to Our Wedding Website!",
     subtitle:
       "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
+    logo: "https://i.ibb.co/Mys0D4t2/Untitled-August-18-2026-at-11-57-57.png",
     ctaButton: "Upload Photos",
     backgroundImage: "https://i.ibb.co/fV2VxFhC/1000748264.jpg",
     showCountdown: true,
