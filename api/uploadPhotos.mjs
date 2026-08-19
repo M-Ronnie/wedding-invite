@@ -146,7 +146,19 @@ function UploadPhotos() {
         body: formData,
       });
 
-      const result = await response.json();
+      // TEMPORARY DEBUG: show the raw response so we can see what's
+      // actually happening without needing browser devtools.
+      const rawText = await response.text();
+      let result;
+      try {
+        result = JSON.parse(rawText);
+      } catch (parseErr) {
+        setMessage(
+          `DEBUG — Status: ${response.status} ${response.statusText}. Body (not JSON): ${rawText.slice(0, 300)}`
+        );
+        setUploading(false);
+        return;
+      }
 
       if (response.ok && result.success) {
         setMessage('Files uploaded successfully!');
@@ -154,11 +166,13 @@ function UploadPhotos() {
           navigate('/gallery');
         }, 2000);
       } else {
-        setMessage(result.message || 'Failed to upload files.');
+        setMessage(
+          `DEBUG — Status: ${response.status}. ${result.message || 'Failed to upload files.'}`
+        );
       }
     } catch (error) {
       console.error('Error during upload:', error);
-      setMessage('An unexpected error occurred.');
+      setMessage(`DEBUG — Network-level error (request never got a response): ${error.message}`);
     } finally {
       setUploading(false);
     }
