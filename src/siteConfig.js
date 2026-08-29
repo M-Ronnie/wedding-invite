@@ -162,7 +162,7 @@ const siteConfig = {
         date: "2026-10-24",
         time: "11:00 AM",
         venue: "Watoto Church, Ntinda",
-        mapEmbed: "https://maps.app.goo.gl/fMzmVaczfCBRvBQbA",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.739709429405!2d32.6029261734923!3d0.35966916396133564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dba40aa0c4f47%3A0x9234de6768e330f3!2sWatoto%20Church%20Ntinda!5e0!3m2!1sen!2sug!4v1788036995282!5m2!1sen!2sug",
         dressCode: "Elegant-formal", // Optional
         description: "Join us as we say our vows", // Optional
         category: "Wedding", // Optional: for filtering
@@ -173,7 +173,7 @@ const siteConfig = {
         date: "2026-10-24",
         time: "2:30 PM",
         venue: "RCN Hall, Makerere-Kikoni",
-        mapEmbed: "https://maps.app.goo.gl/hrZkVW8tp3EQ1eJ17",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7501990769833!2d32.55849337349233!3d0.33481356400053797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb303548d525%3A0x20c5885bda2d6578!2sRemnant%20Christian%20Network%20Uganda%20(RCN%20Uganda)!5e0!3m2!1sen!2sug!4v1788037383063!5m2!1sen!2sug",
         dressCode: "Elegant-Formal", // Optional
         description: "An evening of celebration", // Optional
         category: "post-wedding", // Optional
