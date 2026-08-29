@@ -228,7 +228,7 @@ const siteConfig = {
   image: "https://i.ibb.co/rfTtQ9Hn/3D8A0131.jpg", // one photo of both of them together
   maidOfHonorName: "Mrs. Hauda Tusibira Ngorok",
   bestManName: "Mr. Nathan Ngorok",
-  bio: "Amazing friends of ours we met in SWAP and have since grown close. We're blessed to have them both walk with us this journey.",
+  bio: "Amazingly awesome friends of ours we met in SWAP and have since grown close. We're blessed to have them both walk with us this journey.",
 },
 
   // Registry/Gifts
