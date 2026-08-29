@@ -4,6 +4,11 @@ import siteConfig from '../siteConfig';
 import Card from './ui/Card';
 import Button from './ui/Button';
 
+// Vercel's serverless function request body limit is ~4.5MB total per request.
+// This caps the COMBINED size of all files in one upload, separate from the
+// per-file maxFileSize check below.
+const MAX_TOTAL_UPLOAD_MB = 4;
+
 function UploadPhotos() {
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
@@ -13,6 +18,9 @@ function UploadPhotos() {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
+
+  const getTotalSizeMB = (fileList) =>
+    fileList.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
 
   // Handle file selection
   const handleFileChange = (selectedFiles) => {
@@ -32,7 +40,17 @@ function UploadPhotos() {
       return true;
     });
 
-    setFiles([...files, ...validFiles]);
+    // Check combined size of everything selected so far, including these new files
+    const combined = [...files, ...validFiles];
+    const totalMB = getTotalSizeMB(combined);
+    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
+      alert(
+        `These photos add up to ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit per upload. Please remove a few or upload them in smaller batches.`
+      );
+      return;
+    }
+
+    setFiles(combined);
 
     // Create previews
     validFiles.forEach((file) => {
@@ -106,6 +124,15 @@ function UploadPhotos() {
       return;
     }
 
+    // Final guard in case state got out of sync (e.g. files removed/re-added)
+    const totalMB = getTotalSizeMB(files);
+    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
+      setMessage(
+        `Your selected photos total ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit. Please remove a few and try again.`
+      );
+      return;
+    }
+
     setUploading(true);
     setMessage('');
     const formData = new FormData();
@@ -161,7 +188,7 @@ function UploadPhotos() {
           onDrop={handleDrop}
         >
           <div className="text-center">
-            <div className="text-6xl mb-4">ðŸ“¸</div>
+            <div className="text-6xl mb-4">📸</div>
             <h3 className="text-xl font-semibold text-apple-gray-900 mb-2">
               {isDragging ? 'Drop files here' : 'Drag & drop photos here'}
             </h3>
@@ -182,7 +209,8 @@ function UploadPhotos() {
               Choose Files
             </Button>
             <p className="text-sm text-apple-gray-500 mt-4">
-              Supported: JPEG, PNG, WebP (Max {siteConfig.uploadPhotos?.maxFileSize || 10}MB per file)
+              Supported: JPEG, PNG, WebP (Max {siteConfig.uploadPhotos?.maxFileSize || 10}MB per file,{' '}
+              {MAX_TOTAL_UPLOAD_MB}MB total per upload)
             </p>
           </div>
         </Card>
