@@ -1,18 +1,14 @@
+import { v2 as cloudinary } from 'cloudinary';
 
-import { google } from 'googleapis';
-
-// Google Auth setup
-const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
-  scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-const drive = google.drive({ version: 'v3', auth });
 
-// Get folder ID from environment variable
-const FOLDER_ID = process.env.GOOGLE_DRIVE_FOLDER_ID;
+const CLOUDINARY_FOLDER = 'wedding-photos';
 
 export default async function handler(req, res) {
-  // CORS headers (applied to every response)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -25,45 +21,37 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, message: 'Method not allowed.' });
   }
 
-  if (!FOLDER_ID) {
-    return res.status(400).json({
-      success: false,
-      message: 'GOOGLE_DRIVE_FOLDER_ID not configured.',
-    });
-  }
-
   try {
-    console.log('Fetching photos from Google Drive folder:', FOLDER_ID);
-
-    // List all files in the folder
-    const response = await drive.files.list({
-      q: `'${FOLDER_ID}' in parents and mimeType contains 'image/' and trashed=false`,
-      fields: 'files(id, name, mimeType, createdTime, modifiedTime, webViewLink, thumbnailLink)',
-      orderBy: 'createdTime desc', // Newest first
+    const result = await cloudinary.api.resources({
+      type: 'upload',
+      resource_type: 'image',
+      prefix: `${CLOUDINARY_FOLDER}/`,
+      max_results: 200,
+      context: false,
     });
 
-    const files = response.data.files || [];
+    const photos = (result.resources || [])
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // newest first
+      .map((resource) => {
+        const name = resource.public_id.split('/').pop();
+        const thumbnailUrl = cloudinary.url(resource.public_id, {
+          width: 400,
+          height: 400,
+          crop: 'fill',
+          secure: true,
+        });
 
-    // Generate viewable URLs for each file
-    // Note: Files need to be shared publicly or with "Anyone with the link" for these URLs to work
-    const photos = files.map((file) => {
-      const viewUrl = `https://drive.google.com/uc?export=view&id=${file.id}`;
-      const thumbnailUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w800-h800`;
-      const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
-
-      return {
-        id: file.id,
-        name: file.name,
-        url: viewUrl,
-        thumbnailUrl: thumbnailUrl,
-        downloadUrl: downloadUrl,
-        caption: file.name,
-        date: file.createdTime || file.modifiedTime,
-        category: 'uploaded',
-      };
-    });
-
-    console.log(`Found ${photos.length} photos`);
+        return {
+          id: resource.public_id,
+          name,
+          url: resource.secure_url,
+          thumbnailUrl,
+          downloadUrl: resource.secure_url,
+          caption: name,
+          date: resource.created_at,
+          category: 'uploaded',
+        };
+      });
 
     return res.status(200).json({
       success: true,
