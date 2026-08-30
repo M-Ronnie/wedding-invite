@@ -1,21 +1,14 @@
-import { google } from 'googleapis';
-import { createWriteStream, unlinkSync, createReadStream } from 'fs';
-import { join } from 'path';
 import Busboy from 'busboy';
+import { v2 as cloudinary } from 'cloudinary';
 
-// Google Auth setup
-const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
-  scopes: ['https://www.googleapis.com/auth/drive'],
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-const drive = google.drive({ version: 'v3', auth });
 
-// Get folder ID from environment variable
-const FOLDER_ID = process.env.GOOGLE_DRIVE_FOLDER_ID;
-
-if (!FOLDER_ID) {
-  console.error('ERROR: GOOGLE_DRIVE_FOLDER_ID environment variable is not set');
-}
+// The folder inside your Cloudinary account where guest uploads will be stored.
+const CLOUDINARY_FOLDER = 'wedding-photos';
 
 export const config = {
   api: {
@@ -36,57 +29,41 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, message: 'Method not allowed.' });
   }
 
-  console.log('Processing file upload...');
   const contentType = req.headers['content-type'];
-  console.log('Received Content-Type:', contentType);
 
   if (!contentType || !contentType.includes('multipart/form-data')) {
-    console.error('Invalid Content-Type:', contentType);
     return res.status(400).json({ success: false, message: 'Invalid Content-Type header.' });
   }
 
   const busboy = Busboy({ headers: { 'content-type': contentType } });
-  const fileIds = [];
+  const uploadedFileIds = [];
   const uploadPromises = [];
 
   return new Promise((resolve) => {
     busboy.on('file', (fieldname, file, fileDetails) => {
       const filename = fileDetails.filename || `unknown_${Date.now()}`;
-      const mimetype = fileDetails.mimeType || fileDetails.mimetype;
       console.log(`Processing file: ${filename}`);
 
       const uploadPromise = new Promise((res_, rej_) => {
-        const tempFilePath = join('/tmp', filename);
-        const writeStream = createWriteStream(tempFilePath);
-
-        file.pipe(writeStream);
-
-        file.on('end', async () => {
-          try {
-            const fileMetadata = { name: filename, parents: [FOLDER_ID] };
-            const media = { mimeType: mimetype, body: createReadStream(tempFilePath) };
-
-            const response = await drive.files.create({
-              resource: fileMetadata,
-              media,
-              fields: 'id',
-            });
-
-            fileIds.push(response.data.id);
-            console.log(`Uploaded file ID: ${response.data.id}`);
-            unlinkSync(tempFilePath);
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: CLOUDINARY_FOLDER,
+            resource_type: 'image',
+          },
+          (error, result) => {
+            if (error) {
+              console.error('Cloudinary upload error:', error.message);
+              rej_(error);
+              return;
+            }
+            console.log(`Uploaded: ${result.public_id}`);
+            uploadedFileIds.push(result.public_id);
             res_();
-          } catch (error) {
-            console.error('Error during file upload:', error.message);
-            try { unlinkSync(tempFilePath); } catch (_) {}
-            rej_(error);
           }
-        });
+        );
 
-        file.on('error', (error) => {
-          console.error('File stream error:', error.message);
-          rej_(error);
-        });
+        file.pipe(uploadStream);
+        file.on('error', (err) => rej_(err));
       });
 
       uploadPromises.push(uploadPromise);
@@ -98,7 +75,7 @@ export default async function handler(req, res) {
         res.status(200).json({
           success: true,
           message: 'Files uploaded successfully!',
-          fileIds,
+          fileIds: uploadedFileIds,
         });
       } catch (error) {
         console.error('Error completing upload:', error.message);
