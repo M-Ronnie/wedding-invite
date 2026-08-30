@@ -87,7 +87,7 @@ const siteConfig = {
       "We're so excited to share our special day with you. Capture and share your favorite moments from our wedding here!",
     logo: "https://i.ibb.co/Mys0D4t2/Untitled-August-18-2026-at-11-57-57.png",
     ctaButton: "Upload Photos",
-    backgroundImage: "https://i.ibb.co/svXKS8Ps/1W0A1768.jpg",
+    backgroundImage: "https://i.ibb.co/W4BCzPsV/1W0A1749.jpg",
     showCountdown: true,
   },
 
