@@ -4,11 +4,6 @@ import siteConfig from '../siteConfig';
 import Card from './ui/Card';
 import Button from './ui/Button';
 
-// Vercel's serverless function request body limit is ~4.5MB total per request.
-// This caps the COMBINED size of all files in one upload, separate from the
-// per-file maxFileSize check below.
-const MAX_TOTAL_UPLOAD_MB = 4;
-
 function UploadPhotos() {
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
@@ -18,9 +13,6 @@ function UploadPhotos() {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
-
-  const getTotalSizeMB = (fileList) =>
-    fileList.reduce((sum, f) => sum + f.size, 0) / (1024 * 1024);
 
   // Handle file selection
   const handleFileChange = (selectedFiles) => {
@@ -40,17 +32,7 @@ function UploadPhotos() {
       return true;
     });
 
-    // Check combined size of everything selected so far, including these new files
-    const combined = [...files, ...validFiles];
-    const totalMB = getTotalSizeMB(combined);
-    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
-      alert(
-        `These photos add up to ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit per upload. Please remove a few or upload them in smaller batches.`
-      );
-      return;
-    }
-
-    setFiles(combined);
+    setFiles([...files, ...validFiles]);
 
     // Create previews
     validFiles.forEach((file) => {
@@ -102,18 +84,40 @@ function UploadPhotos() {
     setPreviews(previews.filter((_, i) => i !== index));
   };
 
-  // Simulate upload progress
-  const simulateProgress = () => {
-    return new Promise((resolve) => {
-      let progressValue = 0;
-      const interval = setInterval(() => {
-        progressValue += 10;
-        setProgress(progressValue);
-        if (progressValue >= 100) {
-          clearInterval(interval);
-          resolve();
+  // Upload a single file directly to Cloudinary using XHR (so we get real
+  // progress events, unlike fetch). Resolves when that file is done.
+  const uploadFileToCloudinary = (file, signatureData, onProgress) => {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('api_key', signatureData.apiKey);
+      formData.append('timestamp', signatureData.timestamp);
+      formData.append('signature', signatureData.signature);
+      formData.append('folder', signatureData.folder);
+
+      const xhr = new XMLHttpRequest();
+      xhr.open(
+        'POST',
+        `https://api.cloudinary.com/v1_1/${signatureData.cloudName}/image/upload`
+      );
+
+      xhr.upload.addEventListener('progress', (event) => {
+        if (event.lengthComputable) {
+          onProgress(event.loaded / event.total);
         }
-      }, 100);
+      });
+
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject(new Error(`Upload failed with status ${xhr.status}`));
+        }
+      };
+
+      xhr.onerror = () => reject(new Error('Network error during upload'));
+
+      xhr.send(formData);
     });
   };
 
@@ -124,41 +128,44 @@ function UploadPhotos() {
       return;
     }
 
-    // Final guard in case state got out of sync (e.g. files removed/re-added)
-    const totalMB = getTotalSizeMB(files);
-    if (totalMB > MAX_TOTAL_UPLOAD_MB) {
-      setMessage(
-        `Your selected photos total ${totalMB.toFixed(1)}MB, which is over the ${MAX_TOTAL_UPLOAD_MB}MB combined limit. Please remove a few and try again.`
-      );
-      return;
-    }
-
     setUploading(true);
     setMessage('');
-    const formData = new FormData();
-    files.forEach((file) => formData.append('images', file));
+    setProgress(0);
 
     try {
-      await simulateProgress();
+      // Get a signed set of upload parameters from our backend.
+      // The actual file bytes never touch our server or Vercel's function
+      // limits — they go straight from this browser to Cloudinary.
+      const sigResponse = await fetch('/api/getUploadSignature');
+      const sigData = await sigResponse.json();
 
-      const response = await fetch('/api/uploadPhoto', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        setMessage('Files uploaded successfully!');
-        setTimeout(() => {
-          navigate('/gallery');
-        }, 2000);
-      } else {
-        setMessage(result.message || 'Failed to upload files.');
+      if (!sigData.success) {
+        throw new Error(sigData.message || 'Could not prepare upload.');
       }
+
+      // Track per-file progress and average it for the overall bar
+      const fileProgress = new Array(files.length).fill(0);
+      const updateOverallProgress = () => {
+        const total = fileProgress.reduce((sum, p) => sum + p, 0);
+        setProgress(Math.round((total / files.length) * 100));
+      };
+
+      await Promise.all(
+        files.map((file, index) =>
+          uploadFileToCloudinary(file, sigData, (fraction) => {
+            fileProgress[index] = fraction;
+            updateOverallProgress();
+          })
+        )
+      );
+
+      setMessage('Files uploaded successfully!');
+      setTimeout(() => {
+        navigate('/gallery');
+      }, 2000);
     } catch (error) {
       console.error('Error during upload:', error);
-      setMessage('An unexpected error occurred.');
+      setMessage('Failed to upload files. Please try again.');
     } finally {
       setUploading(false);
     }
@@ -209,8 +216,7 @@ function UploadPhotos() {
               Choose Files
             </Button>
             <p className="text-sm text-apple-gray-500 mt-4">
-              Supported: JPEG, PNG, WebP (Max {siteConfig.uploadPhotos?.maxFileSize || 10}MB per file,{' '}
-              {MAX_TOTAL_UPLOAD_MB}MB total per upload)
+              Supported: JPEG, PNG, WebP (Max {siteConfig.uploadPhotos?.maxFileSize || 10}MB per file)
             </p>
           </div>
         </Card>
